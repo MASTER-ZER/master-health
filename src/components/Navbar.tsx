@@ -3,17 +3,23 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useClinicSettings } from '@/context/ClinicSettingsContext';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { settings } = useClinicSettings();
+
+  // Hide the public navbar completely on all admin routes
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
 
   const navLinks = [
     { name: 'الرئيسية', href: '/' },
     { name: 'عن العيادة', href: '/about' },
     { name: 'احجز موعد', href: '/book' },
     { name: 'تواصل معنا', href: '/contact' },
-    { name: 'لوحة التحكم', href: '/admin' },
   ];
 
   const isActive = (href: string) => {
@@ -67,12 +73,12 @@ export default function Navbar() {
           {/* Contact and Booking CTA */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="tel:+966110000000"
+              href={`tel:${settings.phone.replace(/\s+/g, '')}`}
               className="flex items-center gap-2 text-sm text-body hover:text-primary font-medium transition-colors"
               dir="ltr"
             >
               <span className="material-symbols-outlined text-primary text-base">call</span>
-              <span>+966 11 000 0000</span>
+              <span>{settings.phone}</span>
             </a>
 
             <Link
@@ -128,13 +134,14 @@ export default function Navbar() {
             );
           })}
           <div className="pt-3 border-t border-border flex flex-col gap-2">
-            <Link
-              href="/admin/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-center py-2 text-sm text-muted hover:text-primary font-medium"
+            <a
+              href={`tel:${settings.phone.replace(/\s+/g, '')}`}
+              className="flex items-center justify-center gap-2 py-2 text-sm text-primary font-bold bg-primary/5 rounded-lg"
+              dir="ltr"
             >
-              تسجيل دخول الطاقم الطبي
-            </Link>
+              <span className="material-symbols-outlined text-base">call</span>
+              <span>{settings.phone}</span>
+            </a>
           </div>
         </div>
       )}

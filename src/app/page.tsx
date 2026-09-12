@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useClinicSettings } from '@/context/ClinicSettingsContext';
 
 export default function HomePage() {
+  const { settings } = useClinicSettings();
   const [selectedSlot, setSelectedSlot] = useState('05:30 مساءً');
   const [bookingSubmitted, setBookingSubmitted] = useState(false);
   const [quickForm, setQuickForm] = useState({
@@ -23,21 +25,21 @@ export default function HomePage() {
     <div className="relative overflow-hidden">
       {/* Top Decorative Ambient Glows */}
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -left-20 w-80 h-80 bg-secondary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 -left-32 w-80 h-80 bg-secondary/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* =========================================================================
           1. Hero Section
       ========================================================================= */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 lg:pt-16 lg:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Text & Action Column (RTL Start) */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full self-start text-xs font-bold">
-              <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" />
-              <span className="text-secondary font-bold">العيادة تستقبل المراجعين الآن</span>
-              <span className="text-muted">•</span>
-              <span className="text-body font-normal">حي النموذجية، الرياض</span>
+          <div className="lg:col-span-7 flex flex-col items-start gap-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-border shadow-xs text-xs font-semibold text-primary">
+              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+              <span>عيادة استشارية معتمدة</span>
+              <span className="text-border">|</span>
+              <span className="text-body font-normal">{settings.address.split('،')[1] || settings.address.split('،')[0] || 'الرياض'}</span>
             </div>
 
             <div className="space-y-3">
@@ -47,9 +49,9 @@ export default function HomePage() {
               </h1>
               
               <div className="flex flex-wrap items-center gap-2 text-base pt-1">
-                <span className="font-bold text-primary text-lg">د. خالد المنصوري</span>
+                <span className="font-bold text-primary text-lg">{settings.doctor_name}</span>
                 <span className="text-border">|</span>
-                <span className="text-body">استشاري أمراض القلب والأوعية الدموية والباطنية</span>
+                <span className="text-body">{settings.specialty}</span>
               </div>
 
               <p className="text-body text-base lg:text-lg leading-relaxed max-w-2xl pt-1">
@@ -183,7 +185,7 @@ export default function HomePage() {
               </h2>
 
               <p className="text-body text-sm sm:text-base leading-relaxed">
-                نؤمن في عيادة ماستر هيلث بأن الشفاء يبدأ من فهم التاريخ الطبي الكامل للمريض دون استعجال. يكرس د. خالد المنصوري وقتاً وافياً لكل استشارة سريرية، معتمداً على أحدث الفحوصات غير التداخلية وأجهزة التخطيط ومراقبة وظائف القلب الحديثة، لتصميم خطط وقائية وعلاجية مخصصة تناسب أسلوب حياتك.
+                {settings.about_text}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -553,20 +555,20 @@ export default function HomePage() {
               <span className="material-symbols-outlined text-2xl">pin_drop</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-base sm:text-lg font-bold text-heading">موقع العيادة بالرياض</span>
+              <span className="text-base sm:text-lg font-bold text-heading">موقع ومقر العيادة</span>
               <span className="text-xs sm:text-sm text-body">
-                شارع الملك فهد، حي النموذجية — مواقف سيارات خاصة ومجهزة لراحة المراجعين
+                {settings.address} — مواقف سيارات خاصة ومجهزة لراحة المراجعين
               </span>
             </div>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <a
-              href="tel:+966110000000"
+              href={`tel:${settings.phone.replace(/\s+/g, '')}`}
               className="inline-flex items-center gap-2 bg-background hover:bg-surface-muted border border-border px-5 py-2.5 rounded-xl text-primary font-bold text-sm shadow-sm transition-colors"
               dir="ltr"
             >
               <span className="material-symbols-outlined text-base">call</span>
-              <span>+966 11 000 0000</span>
+              <span>{settings.phone}</span>
             </a>
           </div>
         </div>

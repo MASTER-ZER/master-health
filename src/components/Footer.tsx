@@ -1,7 +1,19 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useClinicSettings } from '@/context/ClinicSettingsContext';
 
 export default function Footer() {
+  const pathname = usePathname();
+  const { settings } = useClinicSettings();
+
+  // Hide the public footer completely on all admin routes
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
+
   return (
     <footer className="bg-white border-t border-border mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -20,8 +32,8 @@ export default function Footer() {
                 <p className="text-xs text-muted">عيادة ماستر الطبية</p>
               </div>
             </div>
-            <p className="text-sm text-body leading-relaxed">
-              رعاية طبية تخصصية متقدمة بمعايير عالمية، بإشراف نخبة من الكفاءات الطبية لتقديم أفضل الخدمات الصحية لحياة مفعمة بالعافية.
+            <p className="text-sm text-body leading-relaxed line-clamp-4">
+              {settings.about_text}
             </p>
           </div>
 
@@ -55,19 +67,8 @@ export default function Footer() {
           {/* Working Hours */}
           <div className="space-y-3">
             <h4 className="font-bold text-sm text-heading text-primary">أوقات العمل</h4>
-            <div className="space-y-1.5 text-sm text-body">
-              <div className="flex justify-between py-1 border-b border-border/60">
-                <span>السبت - الأربعاء</span>
-                <span className="font-medium text-heading">04:00 م - 09:00 م</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-border/60">
-                <span>الخميس</span>
-                <span className="font-medium text-heading">04:00 م - 08:00 م</span>
-              </div>
-              <div className="flex justify-between py-1 text-muted">
-                <span>الجمعة</span>
-                <span className="text-error font-medium">مغلق (عطلة أسبوعية)</span>
-              </div>
+            <div className="space-y-1.5 text-xs sm:text-sm text-body leading-relaxed whitespace-pre-line bg-background p-3 rounded-xl border border-border">
+              {settings.working_hours}
             </div>
           </div>
 
@@ -75,17 +76,21 @@ export default function Footer() {
           <div className="space-y-3">
             <h4 className="font-bold text-sm text-heading text-primary">معلومات التواصل</h4>
             <div className="space-y-2 text-sm text-body">
-              <p className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-base">location_on</span>
-                <span>حي النموذجية، الرياض، المملكة العربية السعودية</span>
+              <p className="flex items-start gap-2">
+                <span className="material-symbols-outlined text-primary text-base shrink-0 mt-0.5">location_on</span>
+                <span className="text-xs leading-relaxed">{settings.address}</span>
               </p>
               <p className="flex items-center gap-2" dir="ltr">
                 <span className="material-symbols-outlined text-primary text-base">call</span>
-                <span>+966 11 000 0000</span>
+                <a href={`tel:${settings.phone.replace(/\s+/g, '')}`} className="hover:text-primary transition-colors">
+                  {settings.phone}
+                </a>
               </p>
               <p className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary text-base">mail</span>
-                <span>contact@masterhealth.com</span>
+                <a href={`mailto:${settings.email}`} className="hover:text-primary transition-colors">
+                  {settings.email}
+                </a>
               </p>
             </div>
           </div>
@@ -95,11 +100,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-border mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
           <p>© {new Date().getFullYear()} Master Health — جميع الحقوق محفوظة لعيادة ماستر الطبية.</p>
-          <div className="flex items-center gap-4">
-            <Link href="/admin/login" className="hover:text-primary transition-colors">
-              بوابة الطاقم الطبي والإداري
-            </Link>
-          </div>
+          <p className="text-[11px] text-muted">بإشراف {settings.doctor_name}</p>
         </div>
       </div>
     </footer>

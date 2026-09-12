@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Booking, BookingStatus } from '@/lib/types';
+import AdminHeader from '@/components/AdminHeader';
 
 export default function AdminDashboardPage() {
   const router = useRouter();
@@ -36,22 +37,24 @@ export default function AdminDashboardPage() {
     }
   };
 
+  // Protect client side as secondary defense
   useEffect(() => {
-    const checkAuth = async () => {
+    async function checkAuth() {
       try {
         const res = await fetch('/api/admin/me');
-        const data = await res.json();
-        if (!data.authenticated) {
+        if (!res.ok) {
           router.replace('/admin/login');
-          return;
         }
-        fetchBookings();
-      } catch (err) {
+      } catch (e) {
         router.replace('/admin/login');
       }
-    };
+    }
     checkAuth();
   }, [router]);
+
+  useEffect(() => {
+    fetchBookings();
+  }, []);
 
   // Update Status
   const handleUpdateStatus = async (id: string, newStatus: BookingStatus) => {
@@ -150,66 +153,30 @@ export default function AdminDashboardPage() {
   return (
     <div className="min-h-screen bg-background pb-16">
       
-      {/* Top Header Bar */}
-      <div className="bg-white border-b border-border sticky top-0 z-30 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined text-2xl">admin_panel_settings</span>
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="text-xl font-bold text-heading">لوحة تحكم عيادة ماستر هيلث</h1>
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary/15 text-secondary text-[11px] font-bold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                    مباشر
-                  </span>
-                </div>
-                <p className="text-xs text-muted">
-                  إدارة وتحديث حالات حجوزات المرضى اليومية
-                </p>
-              </div>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={fetchBookings}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-background hover:bg-surface-muted border border-border text-xs font-bold text-heading shadow-sm transition-all"
-                title="تحديث البيانات"
-              >
-                <span className="material-symbols-outlined text-base text-primary">sync</span>
-                <span>تحديث</span>
-              </button>
-
-              <Link
-                href="/book"
-                target="_blank"
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-primary hover:bg-primary-dark text-white text-xs font-bold shadow-sm transition-all"
-              >
-                <span className="material-symbols-outlined text-base">add_circle</span>
-                <span>حجز جديد</span>
-              </Link>
-
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-error/10 border border-border hover:border-error/30 text-xs font-bold text-error shadow-sm transition-all"
-              >
-                <span className="material-symbols-outlined text-base">logout</span>
-                <span>تسجيل الخروج</span>
-              </button>
-            </div>
-
-          </div>
-        </div>
-      </div>
+      {/* Top Dedicated Admin Header */}
+      <AdminHeader />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-6">
         
+        {/* Page Title & Refresh */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-border shadow-sm">
+          <div>
+            <h1 className="text-xl font-extrabold text-heading">سجل مواعيد وحجوزات المرضى</h1>
+            <p className="text-xs text-muted mt-0.5">
+              متابعة طلبات الكشف وتحديث الحالات فورياً في قاعدة بيانات Supabase
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={fetchBookings}
+            disabled={loading}
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-xl text-xs font-bold shadow-sm transition-all cursor-pointer disabled:opacity-50"
+          >
+            <span className={`material-symbols-outlined text-base ${loading ? 'animate-spin' : ''}`}>sync</span>
+            <span>{loading ? 'جاري التحديث...' : 'تحديث البيانات'}</span>
+          </button>
+        </div>
+
         {/* Error Alert if Supabase fails */}
         {fetchError && (
           <div className="p-4 rounded-2xl bg-error/10 border border-error/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-error">

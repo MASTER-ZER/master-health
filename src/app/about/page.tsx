@@ -1,8 +1,13 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useClinicSettings } from '@/context/ClinicSettingsContext';
 
 export default function AboutPage() {
+  const { settings } = useClinicSettings();
+
   return (
     <div className="relative overflow-hidden">
       {/* Subtle Ambient Glows */}
@@ -18,68 +23,53 @@ export default function AboutPage() {
           <span className="text-primary font-bold">عن العيادة والطبيب</span>
         </div>
 
-        {/* Doctor Profile Bento Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* Hero Clinical Introduction Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
           
-          {/* Right Column (RTL Lead): Physician Portrait & Quick Accreditations */}
-          <div className="lg:col-span-5 flex flex-col gap-5">
-            <div className="relative bg-white border border-border rounded-2xl p-4 shadow-card">
-              <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden bg-primary/5">
-                <Image
-                  src="/images/doctor.png"
-                  alt="الدكتور خالد المنصوري"
-                  fill
-                  className="object-cover object-top"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                
-                {/* Overlay Chips */}
-                <div className="absolute bottom-4 right-4 left-4 flex items-center justify-between gap-2">
-                  <div className="bg-white/95 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
-                    <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-                    <span className="text-xs font-bold text-heading">متاح للاستشارات والزيارات</span>
-                  </div>
-                  <div className="bg-primary text-white px-3 py-1 rounded-full text-xs font-bold shadow-sm flex items-center gap-1">
-                    <span className="material-symbols-outlined text-xs">verified</span>
-                    <span>طبيب استشاري</span>
-                  </div>
+          {/* Right Column: Visual Portrait & Clinical Trust Badge */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative w-full max-w-md mx-auto aspect-4/5 rounded-3xl overflow-hidden shadow-card border-4 border-white bg-surface-muted">
+              <Image
+                src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=800&auto=format&fit=crop"
+                alt={settings.doctor_name}
+                fill
+                priority
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 450px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              
+              {/* Overlay Badge */}
+              <div className="absolute bottom-6 right-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-lg text-right">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" />
+                  <span className="text-xs font-bold text-secondary">استشارات طبية مباشرة ومجدولة</span>
                 </div>
-              </div>
-
-              {/* Fast Metrics Strip */}
-              <div className="grid grid-cols-3 gap-2 pt-4">
-                <div className="bg-background rounded-xl p-3 text-center border border-border">
-                  <p className="text-2xl font-bold text-primary">18+</p>
-                  <p className="text-[11px] text-muted font-medium mt-0.5">عاماً من الخبرة</p>
-                </div>
-                <div className="bg-background rounded-xl p-3 text-center border border-border">
-                  <p className="text-2xl font-bold text-secondary">14k+</p>
-                  <p className="text-[11px] text-muted font-medium mt-0.5">حالة علاجية ناجحة</p>
-                </div>
-                <div className="bg-background rounded-xl p-3 text-center border border-border">
-                  <p className="text-2xl font-bold text-heading">35+</p>
-                  <p className="text-[11px] text-muted font-medium mt-0.5">بحثاً منشوراً دولياً</p>
-                </div>
+                <h3 className="font-extrabold text-heading text-base mt-1">
+                  {settings.doctor_name}
+                </h3>
+                <p className="text-xs text-muted">
+                  {settings.specialty}
+                </p>
               </div>
             </div>
 
-            {/* Direct Clinic Timing Card */}
-            <div className="bg-white border border-border rounded-xl p-4 shadow-card flex items-center justify-between">
+            {/* Quick Consultation Badge */}
+            <div className="mt-4 p-4 rounded-2xl bg-white border border-border shadow-xs flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                  <span className="material-symbols-outlined text-xl">schedule</span>
+                <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                  <span className="material-symbols-outlined text-xl">event_available</span>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-heading">مواعيد العيادة الخاصة</p>
-                  <p className="text-xs text-muted">السبت - الأربعاء (4 عصراً - 9 مساءً)</p>
+                  <span className="text-xs font-bold text-heading block">مواعيد العيادة متاحة</span>
+                  <span className="text-[11px] text-muted">حجز مؤكد وسريع عبر البوابة</span>
                 </div>
               </div>
               <Link
                 href="/book"
                 className="inline-flex items-center gap-1 text-primary font-bold text-xs hover:text-primary-dark"
               >
-                <span>احجز</span>
+                <span>احجز موعد</span>
                 <span className="material-symbols-outlined text-sm">arrow_back</span>
               </Link>
             </div>
@@ -94,15 +84,15 @@ export default function AboutPage() {
               </div>
               
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-heading tracking-tight mb-2">
-                د. خالد بن عبد الرحمن المنصوري
+                {settings.doctor_name}
               </h1>
               
               <p className="text-base sm:text-lg text-primary font-semibold mb-4">
-                استشاري أول الأمراض الباطنية وأمراض القلب التداخلية والوقائية
+                {settings.specialty}
               </p>
 
               <p className="text-body text-sm sm:text-base leading-relaxed">
-                يُعد الدكتور خالد المنصوري أحد الكفاءات الطبية الوطنية البارزة في تشخيص وعلاج أمراض القلب والأوعية الدموية والحالات الباطنية المعقدة. يكرس خبرته السريرية التي تمتد لأكثر من 18 عاماً في تعزيز صحة المرضى من خلال نهج سريري وقائي يجمع بين الفهم العميق والتقنيات التشخيصية الحديثة المعتمدة دولياً.
+                {settings.about_text}
               </p>
             </div>
 
@@ -301,7 +291,7 @@ export default function AboutPage() {
             <div className="space-y-2 text-center md:text-right">
               <span className="text-xs font-bold text-primary">جاهزون للاهتمام بصحتك وصحة عائلتك</span>
               <h2 className="text-xl sm:text-2xl font-bold text-heading">
-                ابدأ رحلتك نحو صحة أفضل اليوم مع د. خالد المنصوري
+                ابدأ رحلتك نحو صحة أفضل اليوم مع {settings.doctor_name}
               </h2>
               <p className="text-xs sm:text-sm text-body max-w-xl">
                 يمكنك حجز موعدك بسهولة عبر الموقع واختيار اليوم والوقت الأنسب لك، أو التواصل المباشر مع فريق الاستقبال للمساعدة الفورية.

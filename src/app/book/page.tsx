@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { useClinicSettings } from '@/context/ClinicSettingsContext';
 
 interface BookingResult {
   id: string;
@@ -14,6 +15,7 @@ interface BookingResult {
 }
 
 export default function BookAppointmentPage() {
+  const { settings } = useClinicSettings();
   // Get today's date in YYYY-MM-DD
   const todayStr = useMemo(() => new Date().toISOString().split('T')[0], []);
   
@@ -579,7 +581,7 @@ export default function BookAppointmentPage() {
                     <span className="material-symbols-outlined text-base text-primary">health_and_safety</span>
                     <span>الطبيب المعالج:</span>
                   </span>
-                  <span className="font-bold text-heading">د. خالد المنصوري</span>
+                  <span className="font-bold text-heading">{settings.doctor_name}</span>
                 </div>
 
                 <div className="flex items-center justify-between py-2">
@@ -587,8 +589,8 @@ export default function BookAppointmentPage() {
                     <span className="material-symbols-outlined text-base text-primary">pin_drop</span>
                     <span>مقر العيادة:</span>
                   </span>
-                  <span className="font-bold text-heading text-[11px]">
-                    برج النخبة الطبي، الرياض
+                  <span className="font-bold text-heading text-[11px] truncate max-w-[200px]" title={settings.address}>
+                    {settings.address}
                   </span>
                 </div>
               </div>
@@ -615,12 +617,12 @@ export default function BookAppointmentPage() {
                 <p className="text-[11px] text-muted">فريق الاستقبال جاهز لمساعدتك فوراً</p>
               </div>
               <a
-                href="tel:+966114829900"
+                href={`tel:${settings.phone.replace(/\s+/g, '')}`}
                 className="inline-flex items-center gap-1 bg-background hover:bg-surface-muted border border-border px-3.5 py-2 rounded-xl text-primary text-xs font-bold shadow-sm transition-colors"
                 dir="ltr"
               >
                 <span className="material-symbols-outlined text-sm">call</span>
-                <span>+966 11 482 9900</span>
+                <span>{settings.phone}</span>
               </a>
             </div>
 

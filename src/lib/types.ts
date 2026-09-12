@@ -18,3 +18,18 @@ export interface BookingInput {
   preferred_time: string;
   note?: string;
 }
+
+export interface ClinicSettings {
+  id?: number;
+  doctor_name: string;
+  specialty: string;
+  phone: string;
+  email: string;
+  address: string;
+  working_hours: string;
+  about_text: string;
+  updated_at?: string;
+}
+
+export type ClinicSettingsInput = Omit<ClinicSettings, 'id' | 'updated_at'>;
+

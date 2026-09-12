@@ -45,19 +45,49 @@ CREATE POLICY "Allow authenticated staff to update bookings"
     WITH CHECK (true);
 
 -- ==============================================================================
--- Optional helper table if custom admin table is preferred over pure Supabase Auth
+-- 7. Clinic Settings Table (Dynamic clinic profile managed from Admin Dashboard)
 -- ==============================================================================
-CREATE TABLE IF NOT EXISTS public.admin_users (
-    id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
-    email TEXT UNIQUE NOT NULL,
-    role TEXT NOT NULL DEFAULT 'admin',
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+CREATE TABLE IF NOT EXISTS public.clinic_settings (
+    id INT PRIMARY KEY DEFAULT 1 CHECK (id = 1),
+    doctor_name TEXT NOT NULL DEFAULT 'د. خالد المنصوري',
+    specialty TEXT NOT NULL DEFAULT 'استشاري أمراض القلب والباطنية',
+    phone TEXT NOT NULL DEFAULT '+966 11 482 9900',
+    email TEXT NOT NULL DEFAULT 'contact@masterhealth.com',
+    address TEXT NOT NULL DEFAULT 'برج النخبة الطبي، طريق الملك فهد، الرياض، المملكة العربية السعودية',
+    working_hours TEXT NOT NULL DEFAULT 'السبت - الأربعاء: 04:00 م - 09:00 م | الخميس: 04:00 م - 08:00 م | الجمعة: مغلق',
+    about_text TEXT NOT NULL DEFAULT 'نؤمن في عيادة ماستر هيلث بأن الشفاء يبدأ من فهم التاريخ الطبي الكامل للمريض دون استعجال. يكرس الفريق الطبي وقتاً وافياً لكل استشارة سريرية، معتمداً على أحدث الفحوصات والتقنيات لتصميم خطط وقائية وعلاجية مخصصة تناسب أسلوب حياتك.',
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
-ALTER TABLE public.admin_users ENABLE ROW LEVEL SECURITY;
+-- Seed default settings row if not present
+INSERT INTO public.clinic_settings (id, doctor_name, specialty, phone, email, address, working_hours, about_text)
+VALUES (
+    1,
+    'د. خالد المنصوري',
+    'استشاري أمراض القلب والباطنية',
+    '+966 11 482 9900',
+    'contact@masterhealth.com',
+    'برج النخبة الطبي، طريق الملك فهد، الرياض، المملكة العربية السعودية',
+    'السبت - الأربعاء: 04:00 م - 09:00 م | الخميس: 04:00 م - 08:00 م | الجمعة: مغلق',
+    'نؤمن في عيادة ماستر هيلث بأن الشفاء يبدأ من فهم التاريخ الطبي الكامل للمريض دون استعجال. يكرس الفريق الطبي وقتاً وافياً لكل استشارة سريرية، معتمداً على أحدث الفحوصات والتقنيات لتصميم خطط وقائية وعلاجية مخصصة تناسب أسلوب حياتك.'
+)
+ON CONFLICT (id) DO NOTHING;
 
-CREATE POLICY "Authenticated users can read admin_users"
-    ON public.admin_users
+-- Enable RLS for clinic_settings
+ALTER TABLE public.clinic_settings ENABLE ROW LEVEL SECURITY;
+
+-- Anyone (public visitors) can view clinic settings
+CREATE POLICY "Allow public read clinic_settings"
+    ON public.clinic_settings
     FOR SELECT
-    TO authenticated
+    TO anon, authenticated
     USING (true);
+
+-- Authenticated admin/service_role can update clinic settings
+CREATE POLICY "Allow staff to update clinic_settings"
+    ON public.clinic_settings
+    FOR UPDATE
+    TO authenticated
+    USING (true)
+    WITH CHECK (true);
+

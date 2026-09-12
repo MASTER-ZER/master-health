@@ -2,8 +2,10 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useClinicSettings } from '@/context/ClinicSettingsContext';
 
 export default function ContactPage() {
+  const { settings } = useClinicSettings();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -68,7 +70,7 @@ export default function ContactPage() {
         
         {/* Card: Phone */}
         <a
-          href="tel:+966114829900"
+          href={`tel:${settings.phone.replace(/\s+/g, '')}`}
           className="group bg-white border border-border p-6 rounded-2xl shadow-card hover:shadow-hover transition-all flex items-start gap-4"
         >
           <div className="w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary text-primary group-hover:text-white flex items-center justify-center transition-colors shrink-0">
@@ -77,7 +79,7 @@ export default function ContactPage() {
           <div className="flex flex-col gap-0.5">
             <span className="text-xs text-muted font-medium">الاتصال الهاتفي المباشر</span>
             <span className="text-base font-bold text-heading group-hover:text-primary transition-colors" dir="ltr">
-              +966 11 482 9900
+              {settings.phone}
             </span>
             <span className="text-xs text-body">الاستفسارات وحجوزات المواعيد</span>
           </div>
@@ -85,7 +87,7 @@ export default function ContactPage() {
 
         {/* Card: WhatsApp */}
         <a
-          href="https://wa.me/966551234567"
+          href={`https://wa.me/${settings.phone.replace(/\D/g, '')}`}
           target="_blank"
           rel="noopener noreferrer"
           className="group bg-white border border-border p-6 rounded-2xl shadow-card hover:shadow-hover transition-all flex items-start gap-4"
@@ -96,7 +98,7 @@ export default function ContactPage() {
           <div className="flex flex-col gap-0.5">
             <span className="text-xs text-muted font-medium">واتساب خدمة المراجعين</span>
             <span className="text-base font-bold text-heading group-hover:text-secondary transition-colors" dir="ltr">
-              +966 55 123 4567
+              {settings.phone}
             </span>
             <span className="text-xs text-body">رد فوري خلال أوقات الدوام الرسمي</span>
           </div>
@@ -104,7 +106,7 @@ export default function ContactPage() {
 
         {/* Card: Email */}
         <a
-          href="mailto:care@masterhealthclinic.com"
+          href={`mailto:${settings.email}`}
           className="group bg-white border border-border p-6 rounded-2xl shadow-card hover:shadow-hover transition-all flex items-start gap-4"
         >
           <div className="w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary text-primary group-hover:text-white flex items-center justify-center transition-colors shrink-0">
@@ -113,7 +115,7 @@ export default function ContactPage() {
           <div className="flex flex-col gap-0.5 min-w-0">
             <span className="text-xs text-muted font-medium">البريد الإلكتروني المخصص</span>
             <span className="text-base font-bold text-heading group-hover:text-primary transition-colors truncate">
-              care@masterhealthclinic.com
+              {settings.email}
             </span>
             <span className="text-xs text-body">التقارير الطبية والمراسلات</span>
           </div>
@@ -247,9 +249,9 @@ export default function ContactPage() {
                 <span className="material-symbols-outlined text-2xl">apartment</span>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-base font-bold text-heading">برج النخبة الطبي</span>
+                <span className="text-base font-bold text-heading">مقر وعنوان العيادة</span>
                 <p className="text-xs text-body leading-relaxed">
-                  الرياض، طريق الملك عبد العزيز، الطابق الرابع، عيادة رقم 402
+                  {settings.address}
                 </p>
               </div>
             </div>
@@ -260,21 +262,10 @@ export default function ContactPage() {
             <div className="flex flex-col gap-2">
               <span className="text-xs font-bold text-heading flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-primary text-base">calendar_month</span>
-                <span>أوقات العمل واستقبال المراجعين</span>
+                <span>أوقات ومواعيد العمل واستقبال المراجعين</span>
               </span>
-              <div className="space-y-1.5 text-xs text-body pt-1">
-                <div className="flex justify-between items-center py-1.5 px-3 rounded-lg bg-background border border-border">
-                  <span>السبت إلى الأربعاء</span>
-                  <span className="font-bold text-heading" dir="ltr">09:00 AM - 09:00 PM</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 px-3 rounded-lg bg-background border border-border">
-                  <span>يوم الخميس</span>
-                  <span className="font-bold text-heading" dir="ltr">09:00 AM - 07:00 PM</span>
-                </div>
-                <div className="flex justify-between items-center py-1.5 px-3 rounded-lg bg-background border border-border">
-                  <span>يوم الجمعة</span>
-                  <span className="font-bold text-secondary" dir="ltr">04:00 PM - 09:00 PM (عيادات مسائية)</span>
-                </div>
+              <div className="p-3.5 rounded-xl bg-background border border-border text-xs text-body leading-relaxed whitespace-pre-line">
+                {settings.working_hours}
               </div>
             </div>
 
