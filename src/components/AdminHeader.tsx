@@ -39,21 +39,21 @@ export default function AdminHeader() {
         <div className="flex items-center justify-between h-18 py-3">
           
           {/* Brand & Area Title */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-sm">
-              <span className="material-symbols-outlined text-2xl" style={{ color: '#2B6CB0' }}>
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-xs shrink-0">
+              <span className="material-symbols-outlined text-xl sm:text-2xl" style={{ color: '#2B6CB0' }}>
                 admin_panel_settings
               </span>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-base font-bold text-heading">لوحة تحكم عيادة ماستر هيلث</span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[10px] font-bold">
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs sm:text-base font-bold text-heading truncate">لوحة تحكم ماستر هيلث</span>
+                <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[10px] font-bold shrink-0">
                   <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
                   مباشر
                 </span>
               </div>
-              <p className="text-[11px] text-muted">نظام الإدارة الداخلية والطاقم الطبي</p>
+              <p className="text-[10px] sm:text-[11px] text-muted truncate">نظام الإدارة الداخلية</p>
             </div>
           </div>
 

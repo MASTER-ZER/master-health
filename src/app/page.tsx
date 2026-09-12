@@ -30,129 +30,51 @@ export default function HomePage() {
       {/* =========================================================================
           1. Hero Section
       ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 lg:pt-16 lg:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12 sm:pt-10 sm:pb-16 lg:pt-16 lg:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Text & Action Column (RTL Start) */}
-          <div className="lg:col-span-7 flex flex-col items-start gap-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-border shadow-xs text-xs font-semibold text-primary">
-              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              <span>عيادة استشارية معتمدة</span>
-              <span className="text-border">|</span>
-              <span className="text-body font-normal">{settings.address.split('،')[1] || settings.address.split('،')[0] || 'الرياض'}</span>
-            </div>
-
-            <div className="space-y-3">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-heading tracking-tight leading-[1.25]">
-                رعايتكم الصحية أولويتنا.. <br />
-                <span className="text-primary font-bold">طب متقدم وعناية شخصية فائقة</span>
-              </h1>
-              
-              <div className="flex flex-wrap items-center gap-2 text-base pt-1">
-                <span className="font-bold text-primary text-lg">{settings.doctor_name}</span>
-                <span className="text-border">|</span>
-                <span className="text-body">{settings.specialty}</span>
-              </div>
-
-              <p className="text-body text-base lg:text-lg leading-relaxed max-w-2xl pt-1">
-                أكثر من 15 عاماً من الخبرة السريرية في تقديم أعلى معايير التشخيص والعلاج الطبي المتقدم في بيئة يسودها الاهتمام الدقيق والراحة والاطمئنان.
-              </p>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Link
-                href="/book"
-                className="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-hover text-white px-7 py-3.5 rounded-xl font-bold text-base shadow-sm transition-all group"
-              >
-                <span>احجز موعدك الآن</span>
-                <span className="material-symbols-outlined text-lg transition-transform group-hover:-translate-x-1">arrow_back</span>
-              </Link>
-              <a
-                href="#services-section"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-surface-muted text-heading border border-border px-6 py-3.5 rounded-xl font-bold text-base transition-all"
-              >
-                <span>تعرف على التخصصات</span>
-                <span className="material-symbols-outlined text-base text-primary">keyboard_arrow_down</span>
-              </a>
-            </div>
-
-            {/* Trust Badges Row */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-4">
-              <div className="flex items-center gap-3 bg-white border border-border p-3.5 rounded-xl shadow-card">
-                <span className="material-symbols-outlined text-primary text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  verified
-                </span>
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-heading">اعتماد SCFHS</span>
-                  <span className="text-[11px] text-muted">استشاري مرخص</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 bg-white border border-border p-3.5 rounded-xl shadow-card">
-                <span className="material-symbols-outlined text-warning text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  star
-                </span>
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-heading">4.9 / 5.0</span>
-                  <span className="text-[11px] text-muted">1,200+ مراجع</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 bg-white border border-border p-3.5 rounded-xl shadow-card col-span-2 sm:col-span-1">
-                <span className="material-symbols-outlined text-secondary text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  health_and_safety
-                </span>
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-heading">رعاية دقيقة</span>
-                  <span className="text-[11px] text-muted">بروتوكولات حديثة</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Doctor Card Presentation Column */}
-          <div className="lg:col-span-5 relative mt-6 lg:mt-0">
-            <div className="relative mx-auto max-w-md bg-white border border-border p-4 rounded-2xl shadow-card">
+          {/* Doctor Card Presentation Column (Order 1 on mobile, Order 2 on desktop) */}
+          <div className="order-1 lg:order-2 lg:col-span-5 relative">
+            <div className="relative mx-auto max-w-sm sm:max-w-md bg-white border border-border/70 p-3 sm:p-4 rounded-2xl shadow-card">
               
               {/* Physician Image Frame */}
-              <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-primary/5">
+              <div className="relative w-full aspect-4/3 sm:aspect-square rounded-xl overflow-hidden bg-primary/5">
                 <Image
                   src="/images/doctor.png"
-                  alt="د. خالد المنصوري"
+                  alt={settings.doctor_name}
                   fill
                   className="object-cover object-top"
                   priority
+                  sizes="(max-width: 768px) 100vw, 420px"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 
                 {/* Floating Doctor Credential Chip inside Photo */}
-                <div className="absolute bottom-3 right-3 left-3 p-3 bg-white/95 backdrop-blur-md rounded-xl shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-primary text-lg">medical_services</span>
-                      <span className="text-xs font-bold text-heading">عيادة أمراض القلب التخصصية</span>
+                <div className="absolute bottom-2.5 right-2.5 left-2.5 p-2.5 sm:p-3 bg-white/95 backdrop-blur-md rounded-xl shadow-xs">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <span className="material-symbols-outlined text-primary text-base sm:text-lg shrink-0">medical_services</span>
+                      <span className="text-xs sm:text-sm font-bold text-heading truncate">{settings.doctor_name}</span>
                     </div>
-                    <span className="text-xs font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded-full">
-                      متاح اليوم
+                    <span className="text-[11px] sm:text-xs font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded-full shrink-0">
+                      متاح للحجز
                     </span>
                   </div>
                 </div>
               </div>
 
               {/* Card Bottom Trust Markers */}
-              <div className="mt-3.5 flex items-center justify-between gap-2 bg-background p-3.5 rounded-xl border border-border">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                    <span className="material-symbols-outlined text-xl">workspace_premium</span>
+              <div className="mt-3 flex items-center justify-between gap-2 bg-background p-2.5 sm:p-3.5 rounded-xl border border-border/70">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                    <span className="material-symbols-outlined text-lg sm:text-xl">workspace_premium</span>
                   </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-heading">الهيئة السعودية للتخصصات</span>
-                    <span className="text-[11px] text-muted">اعتماد وتصنيف استشاري أول</span>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-xs font-bold text-heading truncate">{settings.specialty}</span>
+                    <span className="text-[10px] sm:text-[11px] text-muted truncate">اعتماد وتصنيف استشاري أول</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-1 bg-white px-2.5 py-1 rounded-full border border-border text-xs font-bold text-warning-dark">
+                <div className="flex items-center gap-1 bg-white px-2 py-1 rounded-full border border-border/70 text-xs font-bold text-warning-dark shrink-0">
                   <span className="material-symbols-outlined text-sm text-warning" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
@@ -163,82 +85,164 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Text & Action Column (Order 2 on mobile, Order 1 on desktop) */}
+          <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col items-start gap-5 sm:gap-6">
+            
+            {/* Accreditation Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-border/80 shadow-2xs text-xs font-semibold text-primary max-w-full">
+              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse shrink-0" />
+              <span className="shrink-0">عيادة استشارية معتمدة</span>
+              <span className="text-border shrink-0">|</span>
+              <span className="text-body font-normal truncate">{settings.address.split('،')[1] || settings.address.split('،')[0] || 'الرياض'}</span>
+            </div>
+
+            <div className="space-y-2.5 sm:space-y-3">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-heading tracking-tight leading-[1.3] sm:leading-[1.25]">
+                رعايتكم الصحية أولويتنا.. <br />
+                <span className="text-primary font-bold">طب متقدم وعناية شخصية فائقة</span>
+              </h1>
+              
+              <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base pt-0.5">
+                <span className="font-bold text-primary text-base sm:text-lg">{settings.doctor_name}</span>
+                <span className="text-border">|</span>
+                <span className="text-body text-xs sm:text-sm">{settings.specialty}</span>
+              </div>
+
+              <p className="text-body text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl pt-1">
+                أكثر من 15 عاماً من الخبرة السريرية في تقديم أعلى معايير التشخيص والعلاج الطبي المتقدم في بيئة يسودها الاهتمام الدقيق والراحة والاطمئنان.
+              </p>
+            </div>
+
+            {/* CTAs with touch-friendly heights and mobile vertical stack */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1 w-full sm:w-auto">
+              <Link
+                href="/book"
+                className="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-hover text-white px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base shadow-sm hover:shadow-md active:scale-[0.98] transition-all group"
+              >
+                <span className="material-symbols-outlined text-lg">calendar_month</span>
+                <span>احجز موعدك الآن</span>
+                <span className="material-symbols-outlined text-lg transition-transform group-hover:-translate-x-1">arrow_back</span>
+              </Link>
+              <a
+                href="#services-section"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-surface-muted text-heading border border-border px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all active:scale-[0.98]"
+              >
+                <span>تعرف على التخصصات</span>
+                <span className="material-symbols-outlined text-base text-primary">keyboard_arrow_down</span>
+              </a>
+            </div>
+
+            {/* Trust Badges Row */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-2 w-full">
+              <div className="flex items-center gap-2.5 bg-white border border-border/70 p-3 rounded-xl shadow-card">
+                <span className="material-symbols-outlined text-primary text-xl sm:text-2xl shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  verified
+                </span>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-xs font-bold text-heading truncate">اعتماد SCFHS</span>
+                  <span className="text-[10px] sm:text-[11px] text-muted truncate">استشاري مرخص</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 bg-white border border-border/70 p-3 rounded-xl shadow-card">
+                <span className="material-symbols-outlined text-warning text-xl sm:text-2xl shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  star
+                </span>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-xs font-bold text-heading truncate">4.9 / 5.0</span>
+                  <span className="text-[10px] sm:text-[11px] text-muted truncate">1,200+ مراجع</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 bg-white border border-border/70 p-3 rounded-xl shadow-card col-span-2 sm:col-span-1">
+                <span className="material-symbols-outlined text-secondary text-xl sm:text-2xl shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  health_and_safety
+                </span>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-xs font-bold text-heading truncate">رعاية دقيقة</span>
+                  <span className="text-[10px] sm:text-[11px] text-muted truncate">بروتوكولات حديثة</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
       {/* =========================================================================
           2. Highlights & Philosophy Snapshot
       ========================================================================= */}
-      <section className="w-full bg-surface-muted border-y border-border py-16">
+      <section className="w-full bg-surface-muted border-y border-border py-10 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Clinical Philosophy Overview */}
-            <div className="lg:col-span-6 flex flex-col gap-4">
+            <div className="lg:col-span-6 flex flex-col gap-3 sm:gap-4">
               <div className="inline-flex items-center gap-1.5 text-primary text-xs font-bold">
                 <span className="material-symbols-outlined text-base">psychology</span>
                 <span>النهج الطبي والخبرة السريرية</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl font-bold text-heading leading-snug">
+              <h2 className="text-xl sm:text-3xl font-bold text-heading leading-snug">
                 رعاية تتمحور حول المريض، قائمة على الاستماع والتشخيص الدقيق
               </h2>
 
-              <p className="text-body text-sm sm:text-base leading-relaxed">
+              <p className="text-body text-xs sm:text-base leading-relaxed">
                 {settings.about_text}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-border">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-border/80 shadow-2xs">
                   <span className="material-symbols-outlined text-secondary text-2xl shrink-0">check_circle</span>
                   <div>
-                    <span className="text-sm font-bold text-heading block">وقت مخصص وكافٍ</span>
-                    <span className="text-xs text-muted">استماع معمق وشرح مفصل للحالة</span>
+                    <span className="text-xs sm:text-sm font-bold text-heading block">وقت مخصص وكافٍ</span>
+                    <span className="text-[11px] sm:text-xs text-muted">استماع معمق وشرح مفصل للحالة</span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-border">
+                <div className="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-border/80 shadow-2xs">
                   <span className="material-symbols-outlined text-primary text-2xl shrink-0">biotech</span>
                   <div>
-                    <span className="text-sm font-bold text-heading block">أجهزة فحص دقيقة</span>
-                    <span className="text-xs text-muted">تخطيط هولتر وإجهاد متطور</span>
+                    <span className="text-xs sm:text-sm font-bold text-heading block">أجهزة فحص دقيقة</span>
+                    <span className="text-[11px] sm:text-xs text-muted">تخطيط هولتر وإجهاد متطور</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Metric Stat Cards Mosaic */}
-            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-white p-6 rounded-2xl border border-border shadow-card flex flex-col justify-between h-44">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div className="bg-white p-4 sm:p-6 rounded-2xl border border-border/80 shadow-card flex sm:flex-col justify-between items-center sm:items-start gap-4 sm:gap-0 sm:h-44">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                   <span className="material-symbols-outlined">timeline</span>
                 </div>
                 <div>
-                  <div className="text-3xl font-extrabold text-primary" dir="ltr">15+</div>
-                  <p className="text-sm font-bold text-heading mt-1">عاماً من الخبرة</p>
-                  <p className="text-xs text-muted">في كبرى المستشفيات المرجعية</p>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-primary" dir="ltr">15+</div>
+                  <p className="text-xs sm:text-sm font-bold text-heading mt-0.5 sm:mt-1">عاماً من الخبرة</p>
+                  <p className="text-[11px] sm:text-xs text-muted">في كبرى المستشفيات المرجعية</p>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-border shadow-card flex flex-col justify-between h-44">
-                <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+              <div className="bg-white p-4 sm:p-6 rounded-2xl border border-border/80 shadow-card flex sm:flex-col justify-between items-center sm:items-start gap-4 sm:gap-0 sm:h-44">
+                <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
                   <span className="material-symbols-outlined">how_to_reg</span>
                 </div>
                 <div>
-                  <div className="text-3xl font-extrabold text-secondary" dir="ltr">12,000+</div>
-                  <p className="text-sm font-bold text-heading mt-1">استشارة ناجحة</p>
-                  <p className="text-xs text-muted">تشخيص وإدارة حالات قلبية</p>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-secondary" dir="ltr">12,000+</div>
+                  <p className="text-xs sm:text-sm font-bold text-heading mt-0.5 sm:mt-1">استشارة ناجحة</p>
+                  <p className="text-[11px] sm:text-xs text-muted">تشخيص وإدارة حالات قلبية</p>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-border shadow-card flex flex-col justify-between h-44">
-                <div className="w-10 h-10 rounded-xl bg-warning/15 flex items-center justify-center text-warning-dark">
+              <div className="bg-white p-4 sm:p-6 rounded-2xl border border-border/80 shadow-card flex sm:flex-col justify-between items-center sm:items-start gap-4 sm:gap-0 sm:h-44">
+                <div className="w-10 h-10 rounded-xl bg-warning/15 flex items-center justify-center text-warning-dark shrink-0">
                   <span className="material-symbols-outlined">sentiment_very_satisfied</span>
                 </div>
                 <div>
-                  <div className="text-3xl font-extrabold text-warning-dark" dir="ltr">98%</div>
-                  <p className="text-sm font-bold text-heading mt-1">نسبة رضا المرضى</p>
-                  <p className="text-xs text-muted">استطلاعات الجودة المعتمدة</p>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-warning-dark" dir="ltr">98%</div>
+                  <p className="text-xs sm:text-sm font-bold text-heading mt-0.5 sm:mt-1">نسبة رضا المرضى</p>
+                  <p className="text-[11px] sm:text-xs text-muted">استطلاعات الجودة المعتمدة</p>
                 </div>
               </div>
             </div>
@@ -392,62 +396,62 @@ export default function HomePage() {
       {/* =========================================================================
           4. Clinic Working Hours & Fast Interactive Preview Widget
       ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16" id="booking-cta">
-        <div className="bg-primary/5 border border-primary/15 rounded-3xl p-6 sm:p-10 lg:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16" id="booking-cta">
+        <div className="bg-primary/5 border border-primary/15 rounded-3xl p-4 sm:p-10 lg:p-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
             {/* Schedule Information Details */}
-            <div className="lg:col-span-6 flex flex-col gap-4">
+            <div className="lg:col-span-6 flex flex-col gap-3 sm:gap-4">
               <div className="flex items-center gap-2 text-primary font-bold text-xs">
                 <span className="material-symbols-outlined text-base">schedule</span>
                 <span>أوقات عمل العيادة والاستقبال</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-heading">
+              <h2 className="text-xl sm:text-3xl font-bold text-heading">
                 نحن هنا لنعتني بك في الوقت المناسب لك
               </h2>
-              <p className="text-body text-sm sm:text-base leading-relaxed">
+              <p className="text-body text-xs sm:text-base leading-relaxed">
                 تسعى عيادة ماستر هيلث لتوفير مواعيد مرنة تضمن عدم انتظار المرضى وأخذ وقت الفحص المريح كاملاً.
               </p>
 
               {/* Hours Table List */}
-              <div className="flex flex-col gap-2 bg-white p-4 rounded-xl border border-border shadow-card mt-2">
-                <div className="flex items-center justify-between py-2 border-b border-border">
+              <div className="flex flex-col gap-2 bg-white p-3.5 sm:p-4 rounded-xl border border-border/80 shadow-card mt-2">
+                <div className="flex items-center justify-between py-2 border-b border-border/80 text-xs sm:text-sm">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-secondary" />
-                    <span className="text-xs sm:text-sm font-bold text-heading">السبت إلى الخميس:</span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-secondary shrink-0" />
+                    <span className="font-bold text-heading">السبت إلى الخميس:</span>
                   </div>
-                  <span className="text-xs sm:text-sm font-bold text-heading" dir="ltr">09:00 AM - 09:00 PM</span>
+                  <span className="font-bold text-heading" dir="ltr">09:00 AM - 09:00 PM</span>
                 </div>
-                <div className="flex items-center justify-between py-2 border-b border-border">
+                <div className="flex items-center justify-between py-2 border-b border-border/80 text-xs sm:text-sm">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-border" />
-                    <span className="text-xs sm:text-sm text-muted">الجمعة:</span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-border shrink-0" />
+                    <span className="text-muted">الجمعة:</span>
                   </div>
-                  <span className="text-xs bg-surface-muted px-3 py-1 rounded-full text-muted font-medium">
+                  <span className="text-[11px] sm:text-xs bg-surface-muted px-2.5 py-1 rounded-full text-muted font-medium">
                     مغلق (عطلة أسبوعية)
                   </span>
                 </div>
-                <div className="flex items-center justify-between py-2">
+                <div className="flex items-center justify-between py-2 text-xs sm:text-sm">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-primary animate-ping" />
-                    <span className="text-xs sm:text-sm font-bold text-primary">طوارئ الحالات القلبية:</span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-primary animate-ping shrink-0" />
+                    <span className="font-bold text-primary">طوارئ الحالات القلبية:</span>
                   </div>
-                  <span className="text-xs font-bold text-primary">استجابة هاتفية وتوجيه 24/7</span>
+                  <span className="font-bold text-primary text-[11px] sm:text-xs">استجابة هاتفية وتوجيه 24/7</span>
                 </div>
               </div>
             </div>
 
             {/* Quick Booking Preview Widget */}
-            <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-border shadow-card">
+            <div className="lg:col-span-6 bg-white p-4 sm:p-8 rounded-2xl border border-border/80 shadow-card">
               {!bookingSubmitted ? (
-                <form onSubmit={handleQuickSubmit} className="flex flex-col gap-4">
-                  <div className="flex items-center justify-between pb-2">
+                <form onSubmit={handleQuickSubmit} className="flex flex-col gap-3.5 sm:gap-4">
+                  <div className="flex items-center justify-between pb-1 sm:pb-2">
                     <div>
-                      <h3 className="font-bold text-heading text-lg">حجز موعد كشف أو استشارة</h3>
-                      <p className="text-xs text-muted">خطوة واحدة بسيطة لتأكيد حجزك</p>
+                      <h3 className="font-bold text-heading text-base sm:text-lg">حجز موعد كشف أو استشارة</h3>
+                      <p className="text-[11px] sm:text-xs text-muted">خطوة واحدة بسيطة لتأكيد حجزك</p>
                     </div>
-                    <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
-                      <span className="material-symbols-outlined text-xl">event_available</span>
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
+                      <span className="material-symbols-outlined text-lg sm:text-xl">event_available</span>
                     </div>
                   </div>
 
@@ -459,7 +463,7 @@ export default function HomePage() {
                       placeholder="مثال: عبدالله بن فهد الشمري"
                       value={quickForm.fullName}
                       onChange={(e) => setQuickForm({ ...quickForm, fullName: e.target.value })}
-                      className="w-full h-11 px-4 bg-background rounded-lg text-sm text-heading border border-border focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full h-11 px-3.5 bg-background rounded-xl text-xs sm:text-sm text-heading border border-border/80 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                     />
                   </div>
 
@@ -473,7 +477,7 @@ export default function HomePage() {
                         placeholder="05XXXXXXXX"
                         value={quickForm.phone}
                         onChange={(e) => setQuickForm({ ...quickForm, phone: e.target.value })}
-                        className="w-full h-11 px-4 bg-background rounded-lg text-sm text-heading border border-border text-right focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="w-full h-11 px-3.5 bg-background rounded-xl text-xs sm:text-sm text-heading border border-border/80 text-right focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                       />
                     </div>
                     <div>
@@ -481,7 +485,7 @@ export default function HomePage() {
                       <select
                         value={quickForm.service}
                         onChange={(e) => setQuickForm({ ...quickForm, service: e.target.value })}
-                        className="w-full h-11 px-3 bg-background rounded-lg text-sm text-heading border border-border focus:bg-white focus:outline-none"
+                        className="w-full h-11 px-3 bg-background rounded-xl text-xs sm:text-sm text-heading border border-border/80 focus:bg-white focus:outline-none"
                       >
                         <option value="heart-check">فحص شامل للقلب</option>
                         <option value="chronic-care">متابعة ضغط وسكر</option>
@@ -493,17 +497,17 @@ export default function HomePage() {
 
                   {/* Available Time Slots Preview */}
                   <div className="pt-1">
-                    <label className="block text-xs text-muted mb-2 font-medium">الفترات المتاحة لهذا اليوم</label>
-                    <div className="grid grid-cols-3 gap-2">
+                    <label className="block text-xs text-muted mb-1.5 font-medium">الفترات المتاحة لهذا اليوم</label>
+                    <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
                       {['10:00 صباحاً', '05:30 مساءً', '07:45 مساءً'].map((slot) => (
                         <button
                           key={slot}
                           type="button"
                           onClick={() => setSelectedSlot(slot)}
-                          className={`py-2 px-2 text-center rounded-lg text-xs font-bold transition-all ${
+                          className={`py-2 px-1 text-center rounded-xl text-[11px] sm:text-xs font-bold transition-all truncate ${
                             selectedSlot === slot
-                              ? 'bg-primary text-white shadow-sm'
-                              : 'bg-background hover:bg-primary/10 text-body'
+                              ? 'bg-primary text-white shadow-xs'
+                              : 'bg-background hover:bg-primary/10 text-body border border-border/60'
                           }`}
                         >
                           {slot}
@@ -515,7 +519,7 @@ export default function HomePage() {
                   <div className="pt-2">
                     <Link
                       href="/book"
-                      className="w-full h-12 bg-secondary hover:bg-secondary-hover text-white rounded-xl font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-2"
+                      className="w-full h-12 bg-secondary hover:bg-secondary-hover text-white rounded-xl font-bold text-xs sm:text-sm shadow-xs active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                     >
                       <span className="material-symbols-outlined text-base">calendar_today</span>
                       <span>الانتقال لصفحة الحجز الكاملة</span>

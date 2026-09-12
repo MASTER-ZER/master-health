@@ -40,15 +40,15 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               
               {/* Overlay Badge */}
-              <div className="absolute bottom-6 right-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-lg text-right">
+              <div className="absolute bottom-3 sm:bottom-6 right-3 sm:right-6 left-3 sm:left-6 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/50 shadow-lg text-right">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" />
-                  <span className="text-xs font-bold text-secondary">استشارات طبية مباشرة ومجدولة</span>
+                  <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-secondary animate-pulse" />
+                  <span className="text-[10px] sm:text-xs font-bold text-secondary">استشارات طبية مباشرة ومجدولة</span>
                 </div>
-                <h3 className="font-extrabold text-heading text-base mt-1">
+                <h3 className="font-extrabold text-heading text-sm sm:text-base mt-1 truncate">
                   {settings.doctor_name}
                 </h3>
-                <p className="text-xs text-muted">
+                <p className="text-[11px] sm:text-xs text-muted truncate">
                   {settings.specialty}
                 </p>
               </div>

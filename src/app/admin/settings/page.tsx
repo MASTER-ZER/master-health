@@ -71,15 +71,15 @@ export default function AdminSettingsPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
         
         {/* Page Banner */}
-        <div className="bg-white p-6 rounded-2xl border border-border shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="bg-white p-4 sm:p-6 rounded-2xl border border-border/80 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <span className="material-symbols-outlined text-2xl">settings</span>
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-extrabold text-heading">إعدادات وبيانات العيادة</h1>
-              <p className="text-xs text-muted mt-0.5">
-                تعديل معلومات الطبيب، أرقام التواصل، العنوان، وساعات العمل لتنعكس فورياً على كافة صفحات الموقع العام
+              <h1 className="text-lg sm:text-2xl font-extrabold text-heading">إعدادات وبيانات العيادة</h1>
+              <p className="text-[11px] sm:text-xs text-muted mt-0.5">
+                تعديل معلومات الطبيب، أرقام التواصل، العنوان، وساعات العمل لتنعكس فورياً على كافة صفحات الموقع
               </p>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function AdminSettingsPage() {
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-bold transition-colors shrink-0"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-bold transition-all active:scale-95 shrink-0"
           >
             <span className="material-symbols-outlined text-base">visibility</span>
             <span>معاينة الموقع العام</span>
@@ -97,24 +97,24 @@ export default function AdminSettingsPage() {
 
         {/* Feedback Notifications */}
         {successMessage && (
-          <div className="p-4 rounded-xl bg-secondary/15 border border-secondary/30 text-secondary text-xs font-bold flex items-center gap-2 animate-fadeIn">
+          <div className="p-3.5 sm:p-4 rounded-xl bg-secondary/15 border border-secondary/30 text-secondary text-xs font-bold flex items-center gap-2 animate-fadeIn">
             <span className="material-symbols-outlined text-xl shrink-0">check_circle</span>
             <span>{successMessage}</span>
           </div>
         )}
 
         {errorMessage && (
-          <div className="p-4 rounded-xl bg-error/15 border border-error/30 text-error text-xs font-bold flex items-center gap-2 animate-fadeIn">
+          <div className="p-3.5 sm:p-4 rounded-xl bg-error/15 border border-error/30 text-error text-xs font-bold flex items-center gap-2 animate-fadeIn">
             <span className="material-symbols-outlined text-xl shrink-0">error</span>
             <span>{errorMessage}</span>
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
-          {/* Main Form (8 Columns) */}
-          <div className="lg:col-span-8 bg-white border border-border p-6 sm:p-8 rounded-2xl shadow-card">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Main Form (8 Columns) - First on mobile */}
+          <div className="lg:col-span-8 bg-white border border-border/80 p-4 sm:p-8 rounded-2xl shadow-card">
+            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
               
               {/* Doctor Name & Specialty */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -131,7 +131,7 @@ export default function AdminSettingsPage() {
                     value={formData.doctor_name || ''}
                     onChange={handleChange}
                     placeholder="مثال: د. خالد المنصوري"
-                    className="w-full h-11 px-4 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                    className="w-full h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                   />
                 </div>
 
@@ -148,7 +148,7 @@ export default function AdminSettingsPage() {
                     value={formData.specialty || ''}
                     onChange={handleChange}
                     placeholder="مثال: استشاري أمراض القلب والباطنية"
-                    className="w-full h-11 px-4 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                    className="w-full h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                   />
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default function AdminSettingsPage() {
                     value={formData.phone || ''}
                     onChange={handleChange}
                     placeholder="+966 11 482 9900"
-                    className="w-full h-11 px-4 rounded-xl bg-background border border-border text-heading text-sm text-left focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all font-mono"
+                    className="w-full h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm text-left focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all font-mono"
                   />
                 </div>
 
@@ -185,7 +185,7 @@ export default function AdminSettingsPage() {
                     value={formData.email || ''}
                     onChange={handleChange}
                     placeholder="contact@masterhealth.com"
-                    className="w-full h-11 px-4 rounded-xl bg-background border border-border text-heading text-sm text-left focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all font-mono"
+                    className="w-full h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm text-left focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all font-mono"
                   />
                 </div>
               </div>
@@ -204,7 +204,7 @@ export default function AdminSettingsPage() {
                   value={formData.address || ''}
                   onChange={handleChange}
                   placeholder="مثال: برج النخبة الطبي، طريق الملك فهد، الرياض، المملكة العربية السعودية"
-                  className="w-full h-11 px-4 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                  className="w-full h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 />
               </div>
 
@@ -222,7 +222,7 @@ export default function AdminSettingsPage() {
                   value={formData.working_hours || ''}
                   onChange={handleChange}
                   placeholder="مثال: السبت - الأربعاء: 04:00 م - 09:00 م | الخميس: 04:00 م - 08:00 م | الجمعة: مغلق"
-                  className="w-full p-3.5 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                  className="w-full p-3 sm:p-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 />
                 <span className="text-[11px] text-muted block mt-1">
                   يمكن كتابة الأوقات كنص حر ومفصل أو أسطر متعددة.
@@ -243,21 +243,21 @@ export default function AdminSettingsPage() {
                   value={formData.about_text || ''}
                   onChange={handleChange}
                   placeholder="النبذة المختصرة التي تظهر في الصفحة الرئيسية وصفحة عن العيادة..."
-                  className="w-full p-3.5 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all leading-relaxed"
+                  className="w-full p-3 sm:p-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all leading-relaxed"
                 />
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="pt-4 border-t border-border/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <button
                   type="submit"
                   disabled={saving}
-                  className="w-full sm:w-auto px-6 py-3 bg-secondary hover:bg-secondary-hover text-white text-sm font-bold rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full sm:w-auto px-7 py-3.5 bg-secondary hover:bg-secondary-hover text-white text-sm sm:text-base font-bold rounded-xl shadow-xs hover:shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   {saving ? (
                     <>
                       <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      <span>جاري حفظ التعديلات في Supabase...</span>
+                      <span>جاري حفظ التعديلات...</span>
                     </>
                   ) : (
                     <>
@@ -270,7 +270,7 @@ export default function AdminSettingsPage() {
                 <button
                   type="button"
                   onClick={() => setFormData(settings)}
-                  className="w-full sm:w-auto px-4 py-2.5 text-xs font-bold text-muted hover:text-heading transition-colors"
+                  className="w-full sm:w-auto py-2.5 px-4 text-xs font-bold text-muted hover:text-heading active:bg-surface-muted rounded-xl transition-colors text-center"
                 >
                   إلغاء التغييرات غير المحفوظة
                 </button>
@@ -279,14 +279,14 @@ export default function AdminSettingsPage() {
             </form>
           </div>
 
-          {/* Right Live Preview Card (4 Columns) */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white border border-border p-6 rounded-2xl shadow-card sticky top-24">
-              <div className="flex items-center gap-2 pb-4 border-b border-border">
+          {/* Right Live Preview Card (4 Columns) - Stacks neatly below on mobile */}
+          <div className="lg:col-span-4 space-y-6 w-full">
+            <div className="bg-white border border-border/80 p-4 sm:p-6 rounded-2xl shadow-card lg:sticky lg:top-24">
+              <div className="flex items-center gap-2 pb-3.5 sm:pb-4 border-b border-border/80">
                 <span className="material-symbols-outlined text-primary text-xl">preview</span>
                 <div>
-                  <h3 className="text-xs font-bold text-heading">معاينة حية فورية</h3>
-                  <p className="text-[10px] text-muted">هكذا ستظهر بياناتك للمرضى في الموقع العام</p>
+                  <h3 className="text-xs sm:text-sm font-bold text-heading">معاينة حية فورية</h3>
+                  <p className="text-[10px] sm:text-[11px] text-muted">هكذا ستظهر بياناتك للمرضى في الموقع العام</p>
                 </div>
               </div>
 

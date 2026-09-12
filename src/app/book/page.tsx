@@ -153,34 +153,34 @@ export default function BookAppointmentPage() {
         </div>
 
         {/* Top Clinical Context Strip */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-6 bg-white border border-border p-6 rounded-2xl shadow-card">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-6 sm:mb-8 p-4 sm:p-6 bg-white border border-border/80 rounded-2xl shadow-card">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <span className="material-symbols-outlined text-2xl">event_available</span>
             </div>
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-                <span className="text-xs font-bold text-secondary">الحجوزات مفتوحة اليوم</span>
+                <span className="text-[11px] sm:text-xs font-bold text-secondary">الحجوزات مفتوحة اليوم</span>
               </div>
-              <h1 className="text-xl sm:text-2xl font-extrabold text-heading mt-0.5">
+              <h1 className="text-lg sm:text-2xl font-extrabold text-heading mt-0.5">
                 حجز موعد عيادة ماستر هيلث
               </h1>
-              <p className="text-xs text-muted">
-                خطوات سريعة لحجز استشارتك مع نخبة الكوادر الطبية المتخصصة بالرياض
+              <p className="text-[11px] sm:text-xs text-muted">
+                خطوات سريعة لحجز استشارتك مع نخبة الكوادر الطبية المتخصصة
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-2 bg-background px-4 py-2 rounded-xl border border-border">
+          <div className="hidden sm:flex items-center gap-3">
+            <div className="flex items-center gap-2 bg-background px-3.5 py-2 rounded-xl border border-border">
               <span className="material-symbols-outlined text-secondary text-lg">verified</span>
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-heading">اعتماد صحي معتمد</span>
                 <span className="text-[10px] text-muted">امتثال لمعايير وزارة الصحة</span>
               </div>
             </div>
-            <div className="hidden md:flex items-center gap-2 bg-background px-4 py-2 rounded-xl border border-border">
+            <div className="hidden md:flex items-center gap-2 bg-background px-3.5 py-2 rounded-xl border border-border">
               <span className="material-symbols-outlined text-primary text-lg">schedule</span>
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-heading">تأكيد مباشر</span>
@@ -191,34 +191,34 @@ export default function BookAppointmentPage() {
         </div>
 
         {/* Main Layout Split */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* Left: Dynamic Booking Form Container (7 cols) */}
-          <div className="lg:col-span-7 bg-white border border-border p-6 sm:p-8 rounded-2xl shadow-card">
+          <div className="lg:col-span-7 bg-white border border-border/80 p-4 sm:p-8 rounded-2xl shadow-card">
             
-            {/* Step Indicators */}
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-border">
-              <div className="flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">
+            {/* Step Indicators (Adaptive for small screens) */}
+            <div className="flex items-center justify-between pb-3 sm:pb-4 mb-5 sm:mb-6 border-b border-border/80">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary text-white flex items-center justify-center text-[11px] sm:text-xs font-bold shrink-0">
                   ١
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-heading">بيانات المريض</span>
+                <span className="text-[11px] sm:text-sm font-bold text-heading">بيانات المريض</span>
               </div>
-              <div className="h-0.5 w-8 sm:w-16 bg-border" />
-              <div className="flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">
+              <div className="h-0.5 w-4 sm:w-12 bg-border shrink-0" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary text-white flex items-center justify-center text-[11px] sm:text-xs font-bold shrink-0">
                   ٢
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-heading">الموعد والوقت</span>
+                <span className="text-[11px] sm:text-sm font-bold text-heading">الموعد والوقت</span>
               </div>
-              <div className="h-0.5 w-8 sm:w-16 bg-border" />
-              <div className="flex items-center gap-2">
-                <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+              <div className="h-0.5 w-4 sm:w-12 bg-border shrink-0" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-bold shrink-0 ${
                   confirmedBooking ? 'bg-secondary text-white' : 'bg-background border border-border text-muted'
                 }`}>
                   ٣
                 </span>
-                <span className={`text-xs sm:text-sm font-bold ${
+                <span className={`text-[11px] sm:text-sm font-bold ${
                   confirmedBooking ? 'text-secondary' : 'text-muted'
                 }`}>
                   التأكيد الفوري
@@ -228,7 +228,7 @@ export default function BookAppointmentPage() {
 
             {/* Error Message Alert */}
             {errorMessage && (
-              <div className="mb-6 p-4 rounded-xl bg-error/10 border border-error/20 text-error text-xs font-semibold flex items-start gap-2">
+              <div className="mb-5 sm:mb-6 p-3.5 sm:p-4 rounded-xl bg-error/10 border border-error/20 text-error text-xs font-semibold flex items-start gap-2">
                 <span className="material-symbols-outlined text-lg shrink-0">error</span>
                 <div className="flex-1">
                   <p>{errorMessage}</p>
@@ -257,7 +257,7 @@ export default function BookAppointmentPage() {
                     value={patientName}
                     onChange={(e) => setPatientName(e.target.value)}
                     placeholder="مثال: عبدالله بن عبدالعزيز السلمان"
-                    className="w-full h-12 px-4 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                    className="w-full h-12 px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                   />
                   <span className="text-[11px] text-muted block mt-1">
                     يرجى كتابة الاسم الثلاثي كما هو مسجل في الهوية الوطنية أو الإقامة.
@@ -279,9 +279,9 @@ export default function BookAppointmentPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="05X XXX XXXX"
-                      className="w-full h-12 pl-4 pr-24 rounded-xl bg-background border border-border text-heading text-sm text-left focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                      className="w-full h-12 pl-4 pr-24 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm text-left focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                     />
-                    <div className="absolute right-2 top-2 bottom-2 flex items-center gap-1 px-3 bg-white border border-border rounded-lg text-xs text-muted select-none" dir="ltr">
+                    <div className="absolute right-2 top-2 bottom-2 flex items-center gap-1 px-2.5 sm:px-3 bg-white border border-border rounded-lg text-xs text-muted select-none" dir="ltr">
                       <span>🇸🇦</span>
                       <span className="font-bold text-heading">+966</span>
                     </div>
@@ -299,8 +299,8 @@ export default function BookAppointmentPage() {
                     <span className="text-error">*</span>
                   </label>
                   
-                  {/* Quick Select Day Pills */}
-                  <div className="grid grid-cols-3 gap-3 mb-3">
+                  {/* Quick Select Day Pills (Responsive 3-column with tight padding on 375px) */}
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-3">
                     {quickDates.map((q) => {
                       const isSelected = preferredDate === q.iso;
                       return (
@@ -308,19 +308,19 @@ export default function BookAppointmentPage() {
                           key={q.iso}
                           type="button"
                           onClick={() => setPreferredDate(q.iso)}
-                          className={`p-3 rounded-xl border text-right transition-all flex flex-col justify-between ${
+                          className={`p-2 sm:p-3 rounded-xl border text-center sm:text-right transition-all flex flex-col justify-between active:scale-95 ${
                             isSelected
-                              ? 'bg-primary border-primary text-white shadow-sm'
-                              : 'bg-background border-border hover:bg-primary/5 text-heading'
+                              ? 'bg-primary border-primary text-white shadow-xs'
+                              : 'bg-background border-border/80 hover:bg-primary/5 text-heading'
                           }`}
                         >
-                          <span className={`text-[11px] font-medium ${isSelected ? 'text-primary-light' : 'text-muted'}`}>
+                          <span className={`text-[10px] sm:text-[11px] font-medium truncate ${isSelected ? 'text-primary-light' : 'text-muted'}`}>
                             {q.dayName}
                           </span>
-                          <span className="text-xs sm:text-sm font-bold mt-0.5">
+                          <span className="text-xs sm:text-sm font-bold mt-0.5 truncate">
                             {q.dateLabel}
                           </span>
-                          <span className={`text-[10px] font-bold mt-1 ${isSelected ? 'text-secondary-light' : 'text-secondary'}`}>
+                          <span className={`text-[9px] sm:text-[10px] font-bold mt-1 truncate ${isSelected ? 'text-secondary-light' : 'text-secondary'}`}>
                             متاح للحجز
                           </span>
                         </button>
@@ -334,11 +334,11 @@ export default function BookAppointmentPage() {
                     min={todayStr}
                     value={preferredDate}
                     onChange={(e) => setPreferredDate(e.target.value)}
-                    className="w-full h-11 px-4 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full h-11 px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
 
-                {/* Field 4: Time Slot Selector */}
+                {/* Field 4: Time Slot Selector (2 columns on mobile, clean grid) */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-xs sm:text-sm font-bold text-heading flex items-center gap-1.5">
@@ -346,7 +346,7 @@ export default function BookAppointmentPage() {
                       <span>اختيار الفترة والوقت المفضل</span>
                       <span className="text-error">*</span>
                     </label>
-                    <span className="text-xs font-bold text-secondary bg-secondary/10 px-2.5 py-0.5 rounded-full">
+                    <span className="text-[11px] sm:text-xs font-bold text-secondary bg-secondary/10 px-2.5 py-0.5 rounded-full">
                       المحدد: {preferredTime}
                     </span>
                   </div>
@@ -357,16 +357,16 @@ export default function BookAppointmentPage() {
                       <span className="material-symbols-outlined text-sm text-warning">wb_sunny</span>
                       <span>الفترة الصباحية (10:00 ص - 01:00 م)</span>
                     </span>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                       {morningSlots.map((slot) => (
                         <button
                           key={slot}
                           type="button"
                           onClick={() => setPreferredTime(slot)}
-                          className={`py-2 px-2 text-center rounded-lg text-xs font-bold transition-all ${
+                          className={`py-2.5 px-2 text-center rounded-xl text-xs font-bold transition-all active:scale-95 ${
                             preferredTime === slot
-                              ? 'bg-primary text-white shadow-sm ring-2 ring-primary/20'
-                              : 'bg-background hover:bg-surface-muted text-heading border border-border'
+                              ? 'bg-primary text-white shadow-xs ring-2 ring-primary/20'
+                              : 'bg-background hover:bg-surface-muted text-heading border border-border/80'
                           }`}
                         >
                           {slot}
@@ -381,16 +381,16 @@ export default function BookAppointmentPage() {
                       <span className="material-symbols-outlined text-sm text-primary">nights_stay</span>
                       <span>الفترة المسائية (04:30 م - 09:00 م)</span>
                     </span>
-                    <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
                       {eveningSlots.map((slot) => (
                         <button
                           key={slot}
                           type="button"
                           onClick={() => setPreferredTime(slot)}
-                          className={`py-2 px-2 text-center rounded-lg text-xs font-bold transition-all ${
+                          className={`py-2.5 px-2 text-center rounded-xl text-xs font-bold transition-all active:scale-95 ${
                             preferredTime === slot
-                              ? 'bg-primary text-white shadow-sm ring-2 ring-primary/20'
-                              : 'bg-background hover:bg-surface-muted text-heading border border-border'
+                              ? 'bg-primary text-white shadow-xs ring-2 ring-primary/20'
+                              : 'bg-background hover:bg-surface-muted text-heading border border-border/80'
                           }`}
                         >
                           {slot}
@@ -412,12 +412,12 @@ export default function BookAppointmentPage() {
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
                     placeholder="أذكر باختصار الأعراض أو سبب الزيارة لمساعدة الفريق الطبي في تجهيز ملفك مسبقاً..."
-                    className="w-full p-4 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                    className="w-full p-3.5 sm:p-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                   />
                 </div>
 
                 {/* Privacy Guarantee Banner */}
-                <div className="bg-primary/5 border border-primary/15 p-4 rounded-xl flex items-start gap-3">
+                <div className="bg-primary/5 border border-primary/15 p-3.5 sm:p-4 rounded-xl flex items-start gap-3">
                   <span className="material-symbols-outlined text-secondary text-xl shrink-0 mt-0.5">lock</span>
                   <div className="flex flex-col">
                     <span className="text-xs font-bold text-heading">سرية وأمان البيانات الطبية</span>
@@ -431,7 +431,7 @@ export default function BookAppointmentPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-13 bg-secondary hover:bg-secondary-hover text-white font-bold text-base rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer disabled:opacity-70"
+                  className="w-full h-13 bg-secondary hover:bg-secondary-hover text-white font-bold text-sm sm:text-base rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs hover:shadow-sm active:scale-[0.98] cursor-pointer disabled:opacity-70"
                 >
                   {loading ? (
                     <>
@@ -497,18 +497,18 @@ export default function BookAppointmentPage() {
           <div className="lg:col-span-5 flex flex-col gap-6">
             
             {/* Live Summary Card */}
-            <div className="bg-white border border-border p-6 rounded-2xl shadow-card">
+            <div className="bg-white border border-border/80 p-4 sm:p-6 rounded-2xl shadow-card">
               
               {/* Header */}
-              <div className="flex items-center gap-3 pb-4 border-b border-border">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+              <div className="flex items-center gap-3 pb-3.5 sm:pb-4 border-b border-border/80">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                   <span className="material-symbols-outlined text-xl">receipt_long</span>
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-heading">
+                  <h3 className="text-xs sm:text-sm font-bold text-heading">
                     {confirmedBooking ? 'إيصال طلب الحجز الطبي' : 'ملخص الحجز المباشر'}
                   </h3>
-                  <p className="text-[11px] text-muted">
+                  <p className="text-[10px] sm:text-[11px] text-muted">
                     {confirmedBooking ? 'معتمد ومسجل في قاعدة البيانات' : 'معاينة فورية لتفاصيل زيارتك'}
                   </p>
                 </div>
@@ -519,14 +519,14 @@ export default function BookAppointmentPage() {
                 <div className="mt-4 p-3 bg-primary/5 border border-primary/20 rounded-xl flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="text-[10px] text-muted font-medium">رقم المرجع الطبي</span>
-                    <span className="text-sm font-bold text-primary font-mono tracking-wider">
+                    <span className="text-xs sm:text-sm font-bold text-primary font-mono tracking-wider">
                       {confirmedBooking.id.length > 8 ? `MH-${confirmedBooking.id.slice(0, 6).toUpperCase()}` : confirmedBooking.id}
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => copyRef(confirmedBooking.id)}
-                    className="px-3 py-1 bg-white border border-border text-primary text-xs font-bold rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center gap-1"
+                    className="px-3 py-1 bg-white border border-border text-primary text-xs font-bold rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center gap-1 active:scale-95"
                   >
                     <span className="material-symbols-outlined text-sm">content_copy</span>
                     <span>{copied ? 'تم النسخ!' : 'نسخ'}</span>
@@ -535,18 +535,18 @@ export default function BookAppointmentPage() {
               )}
 
               {/* Summary Details Rows */}
-              <div className="mt-4 space-y-3 text-xs">
-                <div className="flex items-center justify-between py-2 border-b border-border">
+              <div className="mt-4 space-y-2.5 sm:space-y-3 text-xs">
+                <div className="flex items-center justify-between py-2 border-b border-border/80">
                   <span className="text-muted flex items-center gap-1.5">
                     <span className="material-symbols-outlined text-base text-primary">person</span>
                     <span>المريض:</span>
                   </span>
-                  <span className="font-bold text-heading">
+                  <span className="font-bold text-heading truncate max-w-[150px] sm:max-w-[200px]">
                     {confirmedBooking ? confirmedBooking.patient_name : (patientName || 'لم يُحدد بعد')}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between py-2 border-b border-border">
+                <div className="flex items-center justify-between py-2 border-b border-border/80">
                   <span className="text-muted flex items-center gap-1.5">
                     <span className="material-symbols-outlined text-base text-primary">phone</span>
                     <span>رقم الجوال:</span>
@@ -556,7 +556,7 @@ export default function BookAppointmentPage() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between py-2 border-b border-border">
+                <div className="flex items-center justify-between py-2 border-b border-border/80">
                   <span className="text-muted flex items-center gap-1.5">
                     <span className="material-symbols-outlined text-base text-secondary">calendar_today</span>
                     <span>تاريخ الموعد:</span>
@@ -566,7 +566,7 @@ export default function BookAppointmentPage() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between py-2 border-b border-border">
+                <div className="flex items-center justify-between py-2 border-b border-border/80">
                   <span className="text-muted flex items-center gap-1.5">
                     <span className="material-symbols-outlined text-base text-primary">alarm</span>
                     <span>الوقت المفضل:</span>
@@ -576,7 +576,7 @@ export default function BookAppointmentPage() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between py-2 border-b border-border">
+                <div className="flex items-center justify-between py-2 border-b border-border/80">
                   <span className="text-muted flex items-center gap-1.5">
                     <span className="material-symbols-outlined text-base text-primary">health_and_safety</span>
                     <span>الطبيب المعالج:</span>
@@ -585,18 +585,18 @@ export default function BookAppointmentPage() {
                 </div>
 
                 <div className="flex items-center justify-between py-2">
-                  <span className="text-muted flex items-center gap-1.5">
+                  <span className="text-muted flex items-center gap-1.5 shrink-0">
                     <span className="material-symbols-outlined text-base text-primary">pin_drop</span>
                     <span>مقر العيادة:</span>
                   </span>
-                  <span className="font-bold text-heading text-[11px] truncate max-w-[200px]" title={settings.address}>
+                  <span className="font-bold text-heading text-[11px] truncate max-w-[140px] sm:max-w-[200px]" title={settings.address}>
                     {settings.address}
                   </span>
                 </div>
               </div>
 
               {/* Instructions Box */}
-              <div className="mt-5 p-3.5 bg-background border border-border rounded-xl">
+              <div className="mt-4 sm:mt-5 p-3.5 bg-background border border-border/80 rounded-xl">
                 <span className="text-xs font-bold text-heading flex items-center gap-1 mb-1">
                   <span className="material-symbols-outlined text-primary text-sm">info</span>
                   <span>إرشادات هامة قبل الزيارة:</span>
@@ -611,14 +611,14 @@ export default function BookAppointmentPage() {
             </div>
 
             {/* Need Direct Assistance Box */}
-            <div className="bg-white border border-border p-5 rounded-2xl shadow-card flex items-center justify-between">
+            <div className="bg-white border border-border/80 p-4 sm:p-5 rounded-2xl shadow-card flex items-center justify-between gap-3">
               <div>
                 <h4 className="text-xs font-bold text-heading">هل تفضل الحجز المباشر بالهاتف؟</h4>
                 <p className="text-[11px] text-muted">فريق الاستقبال جاهز لمساعدتك فوراً</p>
               </div>
               <a
                 href={`tel:${settings.phone.replace(/\s+/g, '')}`}
-                className="inline-flex items-center gap-1 bg-background hover:bg-surface-muted border border-border px-3.5 py-2 rounded-xl text-primary text-xs font-bold shadow-sm transition-colors"
+                className="inline-flex items-center gap-1 bg-background hover:bg-surface-muted border border-border px-3 py-2 rounded-xl text-primary text-xs font-bold shadow-xs active:scale-95 transition-all shrink-0"
                 dir="ltr"
               >
                 <span className="material-symbols-outlined text-sm">call</span>

@@ -127,9 +127,9 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Left Column: Form */}
-        <div className="lg:col-span-7 bg-white border border-border p-6 sm:p-8 rounded-2xl shadow-card flex flex-col gap-6">
-          <div className="border-b border-border pb-4">
-            <h2 className="text-xl font-bold text-heading">إرسال استفسار أو طلب تواصل</h2>
+        <div className="lg:col-span-7 bg-white border border-border/80 p-4 sm:p-8 rounded-2xl shadow-card flex flex-col gap-5 sm:gap-6">
+          <div className="border-b border-border/80 pb-3 sm:pb-4">
+            <h2 className="text-lg sm:text-xl font-bold text-heading">إرسال استفسار أو طلب تواصل</h2>
             <p className="text-xs sm:text-sm text-body mt-1">
               يرجى تعبئة النموذج أدناه وسيتم التواصل معكم من قبل المشرف الإكلينيكي في أقرب وقت.
             </p>
@@ -147,7 +147,7 @@ export default function ContactPage() {
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   placeholder="مثال: د. عبد العزيز السالم"
-                  className="w-full h-11 px-4 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 />
               </div>
 
@@ -162,7 +162,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="05X XXX XXXX"
-                  className="w-full h-11 px-4 rounded-xl bg-background border border-border text-heading text-sm text-right focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm text-right focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 />
               </div>
             </div>
@@ -178,7 +178,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="name@example.com"
-                  className="w-full h-11 px-4 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary text-right"
+                  className="w-full h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary text-right transition-all"
                 />
               </div>
 
@@ -189,7 +189,7 @@ export default function ContactPage() {
                 <select
                   value={formData.inquiryType}
                   onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
-                  className="w-full h-11 px-3 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full h-11 sm:h-12 px-3 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 >
                   <option value="appointment">استفسار عن موعد مسبق</option>
                   <option value="doctor">استشارة بخصوص تخصص أو طبيب</option>
@@ -210,12 +210,12 @@ export default function ContactPage() {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="اكتب استفسارك هنا بكل وضوح..."
-                className="w-full p-4 rounded-xl bg-background border border-border text-heading text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                className="w-full p-3.5 sm:p-4 rounded-xl bg-background border border-border/80 text-heading text-base sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary resize-none transition-all"
               />
             </div>
 
             {submitted && (
-              <div className="p-4 rounded-xl bg-secondary/15 border border-secondary/30 text-secondary text-xs font-bold flex items-center gap-2">
+              <div className="p-4 rounded-xl bg-secondary/15 border border-secondary/30 text-secondary text-xs font-bold flex items-center gap-2 animate-fadeIn">
                 <span className="material-symbols-outlined text-lg">check_circle</span>
                 <span>تم استلام استفساركم بنجاح. سيقوم فريق العيادة بالتواصل معكم عبر رقم الجوال المسجل.</span>
               </div>
@@ -230,7 +230,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-hover text-white px-7 py-3 rounded-xl font-bold text-sm shadow-sm transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-hover text-white px-7 py-3.5 rounded-xl font-bold text-sm shadow-xs hover:shadow-sm active:scale-[0.98] transition-all cursor-pointer"
               >
                 <span>{submitting ? 'جاري الإرسال...' : 'إرسال الرسالة'}</span>
                 <span className="material-symbols-outlined text-base">arrow_back</span>
@@ -243,7 +243,7 @@ export default function ContactPage() {
         <div className="lg:col-span-5 flex flex-col gap-6">
           
           {/* Address & Working Schedule */}
-          <div className="bg-white border border-border p-6 rounded-2xl shadow-card flex flex-col gap-5">
+          <div className="bg-white border border-border/80 p-4 sm:p-6 rounded-2xl shadow-card flex flex-col gap-5">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                 <span className="material-symbols-outlined text-2xl">apartment</span>
