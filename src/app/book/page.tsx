@@ -103,14 +103,11 @@ export default function BookAppointmentPage() {
         throw new Error(data.error || 'فشل في حفظ الحجز');
       }
 
-      setConfirmedBooking(data.booking || {
-        id: 'MH-' + Math.floor(10000 + Math.random() * 90000),
-        patient_name: patientName,
-        phone: cleanPhone,
-        preferred_date: preferredDate,
-        preferred_time: preferredTime,
-        note,
-      });
+      if (!data.booking || !data.booking.id) {
+        throw new Error(data.error || 'حدث خطأ أثناء حفظ الحجز، برجاء المحاولة لاحقًا أو الاتصال بالعيادة مباشرة.');
+      }
+
+      setConfirmedBooking(data.booking);
 
       // Scroll to top of confirmation card
       window.scrollTo({ top: 100, behavior: 'smooth' });

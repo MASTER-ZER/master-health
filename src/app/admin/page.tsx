@@ -12,20 +12,25 @@ export default function AdminDashboardPage() {
   const [actionLoadingId, setActionLoadingId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
-  const [isDemoData, setIsDemoData] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
-  // Fetch bookings
+  // Fetch bookings directly from Supabase
   const fetchBookings = async () => {
     setLoading(true);
+    setFetchError(null);
     try {
       const res = await fetch('/api/bookings');
       const data = await res.json();
-      if (data.bookings) {
-        setBookings(data.bookings);
-        setIsDemoData(!!data.isDemo);
+      if (!res.ok || data.error) {
+        setFetchError(data.error || 'تعذر تحميل الحجوزات من قاعدة بيانات Supabase.');
+        setBookings([]);
+      } else {
+        setBookings(data.bookings || []);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to fetch bookings:', err);
+      setFetchError(err.message || 'حدث خطأ في الاتصال بالسيرفر.');
+      setBookings([]);
     } finally {
       setLoading(false);
     }
@@ -205,24 +210,20 @@ export default function AdminDashboardPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-6">
         
-        {/* Notice Banner */}
-        {isDemoData && (
-          <div className="p-4 rounded-2xl bg-primary/5 border border-primary/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
-            <div className="flex items-center gap-2.5 text-body">
-              <span className="material-symbols-outlined text-primary text-xl shrink-0">info</span>
-              <span>
-                <b>حالة قاعدة البيانات:</b> يتم عرض الحجوزات المحلية التجريبية. بمجرد تشغيل كود <code>supabase/schema.sql</code> في Supabase، سيتم الربط التلقائي بقاعدة البيانات الحية.
-              </span>
+        {/* Error Alert if Supabase fails */}
+        {fetchError && (
+          <div className="p-4 rounded-2xl bg-error/10 border border-error/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-error">
+            <div className="flex items-center gap-2.5">
+              <span className="material-symbols-outlined text-error text-xl shrink-0">error</span>
+              <span className="font-semibold">{fetchError}</span>
             </div>
-            <a
-              href="https://supabase.com/dashboard/project/uqbsjdhthrbmierlkgod/sql/new"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shrink-0 font-bold text-primary hover:underline inline-flex items-center gap-1"
+            <button
+              type="button"
+              onClick={fetchBookings}
+              className="shrink-0 px-3 py-1 bg-white border border-error/30 text-error rounded-lg font-bold hover:bg-error hover:text-white transition-colors"
             >
-              <span>فتح SQL Editor في Supabase</span>
-              <span className="material-symbols-outlined text-sm">open_in_new</span>
-            </a>
+              إعادة المحاولة
+            </button>
           </div>
         )}
 

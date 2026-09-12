@@ -7,6 +7,7 @@ const supabaseKey =
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
   '';
 
+// Server-side Supabase client
 const supabaseServer =
   supabaseUrl && supabaseKey
     ? createClient(supabaseUrl, supabaseKey, {
@@ -14,91 +15,61 @@ const supabaseServer =
       })
     : null;
 
-// Initial sample bookings if database table is not yet created
-const fallbackBookings = [
-  {
-    id: 'b1a2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d',
-    patient_name: 'سارة محمد الشهري',
-    phone: '0553219874',
-    preferred_date: new Date().toISOString().split('T')[0],
-    preferred_time: '04:30 مساءً',
-    note: 'فحص دوري واستشارة بخصوص ضغط الدم',
-    status: 'pending',
-    created_at: new Date(Date.now() - 3600000).toISOString(),
-  },
-  {
-    id: 'f2b3c4d5-e6a7-8b9c-0d1e-2f3a4b5c6d7e',
-    patient_name: 'عبدالرحمن بن سعود التميمي',
-    phone: '0554128920',
-    preferred_date: new Date().toISOString().split('T')[0],
-    preferred_time: '05:30 مساءً',
-    note: 'متابعة نتائج تخطيط القلب ومراجعة الأدوية',
-    status: 'confirmed',
-    created_at: new Date(Date.now() - 7200000).toISOString(),
-  },
-  {
-    id: 'a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d',
-    patient_name: 'فيصل عبد العزيز القحطاني',
-    phone: '0501122334',
-    preferred_date: new Date(Date.now() + 86400000).toISOString().split('T')[0],
-    preferred_time: '07:45 مساءً',
-    note: 'استشارة رأي طبي ثانٍ قبل القسطرة',
-    status: 'confirmed',
-    created_at: new Date(Date.now() - 14400000).toISOString(),
-  },
-  {
-    id: 'c4d5e6f7-a8b9-0c1d-2e3f-4a5b6c7d8e9f',
-    patient_name: 'منى إبراهيم الدوسري',
-    phone: '0549988776',
-    preferred_date: new Date(Date.now() + 86400000).toISOString().split('T')[0],
-    preferred_time: '11:30 صباحاً',
-    note: 'اعتذار بسبب السفر وتغيير الموعد',
-    status: 'cancelled',
-    created_at: new Date(Date.now() - 28800000).toISOString(),
-  },
-];
-
-// In-memory cache for demo fallbacks if table isn't created in Supabase yet
-let inMemoryBookings = [...fallbackBookings];
-
-// GET: Fetch all bookings
-export async function GET() {
+// Helper to check connection
+function getClientOrError() {
   if (!supabaseServer) {
-    return NextResponse.json({ bookings: inMemoryBookings, isDemo: true });
+    return {
+      error: 'الاتصال بقاعدة بيانات Supabase غير مهيأ (المفاتيح غير موجودة في بيئة الخادم).',
+    };
+  }
+  return { client: supabaseServer };
+}
+
+// GET: Fetch all bookings directly from Supabase
+export async function GET() {
+  const { client, error: clientErr } = getClientOrError();
+  if (clientErr || !client) {
+    return NextResponse.json({ error: clientErr }, { status: 500 });
   }
 
   try {
-    const { data, error } = await supabaseServer
+    const { data, error } = await client
       .from('bookings')
       .select('*')
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.warn('Supabase fetch error, using fallback:', error.message);
-      return NextResponse.json({
-        bookings: inMemoryBookings,
-        isDemo: true,
-        supabaseError: error.message,
-      });
+      console.error('Supabase fetch bookings error:', error);
+      return NextResponse.json(
+        {
+          error: `تعذر جلب الحجوزات من قاعدة بيانات Supabase: ${error.message}`,
+        },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json({
-      bookings: data && data.length > 0 ? data : inMemoryBookings,
-      isDemo: !data || data.length === 0,
-    });
+    return NextResponse.json({ bookings: data || [] });
   } catch (err: any) {
-    console.error('Fetch bookings error:', err);
-    return NextResponse.json({ bookings: inMemoryBookings, isDemo: true });
+    console.error('Server error on fetching bookings:', err);
+    return NextResponse.json(
+      { error: err.message || 'حدث خطأ غير متوقع أثناء استرجاع الحجوزات.' },
+      { status: 500 }
+    );
   }
 }
 
-// POST: Insert a new booking
+// POST: Insert a new booking directly to Supabase
 export async function POST(request: NextRequest) {
+  const { client, error: clientErr } = getClientOrError();
+  if (clientErr || !client) {
+    return NextResponse.json({ error: clientErr }, { status: 500 });
+  }
+
   try {
     const body = await request.json();
     const { patient_name, phone, preferred_date, preferred_time, note } = body;
 
-    // Validation
+    // 1. Validation
     if (!patient_name || typeof patient_name !== 'string' || patient_name.trim().length < 3) {
       return NextResponse.json(
         { error: 'يرجى إدخال اسم المريض الثلاثي بشكل صحيح (3 أحرف على الأقل).' },
@@ -137,63 +108,57 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const newBookingObj = {
-      patient_name: patient_name.trim(),
-      phone: cleanPhone,
-      preferred_date,
-      preferred_time,
-      note: note ? note.trim() : null,
-      status: 'pending' as const,
-    };
+    // 2. Direct Supabase INSERT
+    const { data, error } = await client
+      .from('bookings')
+      .insert([
+        {
+          patient_name: patient_name.trim(),
+          phone: cleanPhone,
+          preferred_date,
+          preferred_time,
+          note: note ? note.trim() : null,
+          status: 'pending',
+        },
+      ])
+      .select()
+      .single();
 
-    if (supabaseServer) {
-      const { data, error } = await supabaseServer
-        .from('bookings')
-        .insert([newBookingObj])
-        .select()
-        .single();
-
-      if (!error && data) {
-        return NextResponse.json(
-          {
-            success: true,
-            message: 'تم تسجيل الحجز بنجاح في Supabase!',
-            booking: data,
-          },
-          { status: 201 }
-        );
-      } else {
-        console.warn('Supabase insert failed, caching locally:', error?.message);
-      }
+    if (error) {
+      console.error('Supabase insert failed:', error);
+      return NextResponse.json(
+        {
+          error: 'حدث خطأ أثناء حفظ الحجز، برجاء المحاولة لاحقًا أو الاتصال بالعيادة مباشرة.',
+          details: error.message,
+        },
+        { status: 500 }
+      );
     }
-
-    // Fallback: save to memory
-    const fallbackBooking = {
-      id: 'MH-' + Math.floor(10000 + Math.random() * 90000),
-      ...newBookingObj,
-      created_at: new Date().toISOString(),
-    };
-    inMemoryBookings.unshift(fallbackBooking);
 
     return NextResponse.json(
       {
         success: true,
-        message: 'تم تسجيل الحجز بنجاح!',
-        booking: fallbackBooking,
+        message: 'تم تسجيل وتخزين الحجز بنجاح في قاعدة بيانات العيادة!',
+        booking: data,
       },
       { status: 201 }
     );
   } catch (err: any) {
-    console.error('Server error:', err);
+    console.error('Server error on booking:', err);
     return NextResponse.json(
-      { error: err.message || 'حدث خطأ غير متوقع في الخادم.' },
+      { error: err.message || 'حدث خطأ غير متوقع أثناء معالجة الحجز.' },
       { status: 500 }
     );
   }
 }
 
-// PATCH: Update booking status
+// PATCH: Update booking status directly in Supabase
 export async function PATCH(request: NextRequest) {
+  const { client, error: clientErr } = getClientOrError();
+  if (clientErr || !client) {
+    return NextResponse.json({ error: clientErr }, { status: 500 });
+  }
+
   try {
     const { id, status } = await request.json();
 
@@ -204,41 +169,30 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
-    // Try updating in Supabase
-    if (supabaseServer) {
-      const { data, error } = await supabaseServer
-        .from('bookings')
-        .update({ status })
-        .eq('id', id)
-        .select()
-        .single();
+    const { data, error } = await client
+      .from('bookings')
+      .update({ status })
+      .eq('id', id)
+      .select()
+      .single();
 
-      if (!error && data) {
-        return NextResponse.json({
-          success: true,
-          message: 'تم تحديث حالة الحجز في قاعدة البيانات بنجاح.',
-          booking: data,
-        });
-      }
+    if (error) {
+      console.error('Supabase status update error:', error);
+      return NextResponse.json(
+        {
+          error: `تعذر تحديث حالة الحجز في قاعدة بيانات Supabase: ${error.message}`,
+        },
+        { status: 500 }
+      );
     }
 
-    // Fallback update in memory
-    const index = inMemoryBookings.findIndex((b) => b.id === id);
-    if (index !== -1) {
-      inMemoryBookings[index].status = status;
-      return NextResponse.json({
-        success: true,
-        message: 'تم تحديث حالة الحجز بنجاح.',
-        booking: inMemoryBookings[index],
-      });
-    }
-
-    return NextResponse.json(
-      { error: 'لم يتم العثور على الحجز المطلوب.' },
-      { status: 404 }
-    );
+    return NextResponse.json({
+      success: true,
+      message: 'تم تحديث حالة الحجز في قاعدة البيانات بنجاح.',
+      booking: data,
+    });
   } catch (err: any) {
-    console.error('Update status error:', err);
+    console.error('Server error on status update:', err);
     return NextResponse.json(
       { error: err.message || 'حدث خطأ أثناء تحديث الحالة.' },
       { status: 500 }
