@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"inverse-surface":"#2a303d","surface-container":"#e8eeff","on-error":"#ffffff","tertiary":"#784600","error-container":"#ffdad6","on-surface":"#161c27","on-primary-container":"#e1ecff","inverse-primary":"#a2c9ff","surface-bright":"#f9f9ff","primary-container":"#2b6cb0","on-tertiary":"#ffffff","error":"#ba1a1a","tertiary-container":"#9a5b00","on-tertiary-fixed-variant":"#693c00","secondary-container":"#8ef5b5","surface-container-lowest":"#ffffff","primary":"#005394","surface-variant":"#dde2f3","secondary":"#006d40","secondary-fixed":"#91f8b8","outline":"#727782","on-background":"#161c27","secondary-fixed-dim":"#74db9d","on-primary":"#ffffff","on-secondary-container":"#007243","on-surface-variant":"#414750","on-secondary-fixed-variant":"#00522f","background":"#f9f9ff","on-error-container":"#93000a","surface-container-highest":"#dde2f3","primary-fixed-dim":"#a2c9ff","outline-variant":"#c1c7d2","surface":"#f9f9ff","tertiary-fixed":"#ffdcbd","primary-fixed":"#d3e4ff","surface-container-low":"#f1f3ff","surface-container-high":"#e3e8f9","surface-tint":"#1960a3","on-primary-fixed":"#001c38","surface-dim":"#d4daea","tertiary-fixed-dim":"#ffb86e","inverse-on-surface":"#ecf0ff","on-secondary":"#ffffff","on-secondary-fixed":"#002110","on-primary-fixed-variant":"#004881","on-tertiary-fixed":"#2c1600","on-tertiary-container":"#ffe7d2"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"gutter":"1rem","space-xl":"2.5rem","margin-md":"2rem","gutter-md":"1.5rem","margin-lg":"3rem","space-xs":"0.25rem","margin":"1rem","gutter-lg":"2rem","space-md":"1rem","space-sm":"0.5rem","space-lg":"1.5rem"},fontFamily:{"label-md":["Noto Sans"],"headline-xl-mobile":["Noto Sans"],"body-sm":["Noto Sans"],"label-sm":["Noto Sans"],"body-lg":["Noto Sans"],"headline-lg":["Noto Sans"],"headline-md":["Noto Sans"],"headline-sm":["Noto Sans"],"label-lg":["Noto Sans"],"headline-lg-mobile":["Noto Sans"],"body-md":["Noto Sans"],"headline-xl":["Noto Sans"]},fontSize:{"label-md":["0.875rem",{"lineHeight":"1.25rem","fontWeight":"500"}],"headline-xl-mobile":["1.75rem",{"lineHeight":"2.375rem","fontWeight":"700"}],"body-sm":["0.875rem",{"lineHeight":"1.5rem","fontWeight":"400"}],"label-sm":["0.75rem",{"lineHeight":"1.125rem","fontWeight":"500"}],"body-lg":["1.125rem",{"lineHeight":"1.875rem","fontWeight":"400"}],"headline-lg":["1.875rem",{"lineHeight":"2.5rem","fontWeight":"600"}],"headline-md":["1.5rem",{"lineHeight":"2.125rem","fontWeight":"600"}],"headline-sm":["1.25rem",{"lineHeight":"1.75rem","fontWeight":"600"}],"label-lg":["0.9375rem",{"lineHeight":"1.375rem","fontWeight":"600"}],"headline-lg-mobile":["1.5rem",{"lineHeight":"2rem","fontWeight":"600"}],"body-md":["1rem",{"lineHeight":"1.75rem","fontWeight":"400"}],"headline-xl":["2.25rem",{"lineHeight":"3rem","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed right-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-space-lg pb-space-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="px-space-lg mb-space-xl flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XH5cK4PUWN-rMav1FCFVZp2kzPhICfLRI3X1Kvtt8KO3atyLQpiGuDsyUhIYJZP2qXlmeYgo8c4tBG_LhFgv27MBupNMfqhr2j5z56ELJpADcYaEBXQazuYTeoguP3qg1xT-YnXVIp2mB-72-AzqVBk42VrzWdY7Ni38VyyaYoInaXVJI5hOVxjTRfuVNYVybIodoaL_V_0uD4DT-UwOv1LPzVayJe4mLgNwaTKbyzPqy8w7zxSVcS5SM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary">Master Health</span><span class="font-label-sm text-label-sm text-on-surface-variant">إدارة العيادة</span></div></div><nav class="flex-1 px-space-md flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-all bg-primary-container text-on-primary-container font-bold rounded-lg" data-path="admin-dashboard" href="#"><span class="material-symbols-outlined text-xl">calendar_month</span><span>حجوزات المرضى</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="home" href="#"><span class="material-symbols-outlined text-xl">home</span><span>الرئيسية العامة</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="about-doctor" href="#"><span class="material-symbols-outlined text-xl">clinical_notes</span><span>ملف الأطباء</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="contact-us" href="#"><span class="material-symbols-outlined text-xl">support_agent</span><span>رسائل واستفسارات</span></a></nav><div class="px-space-md pt-space-md"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-error hover:bg-error-container hover:text-on-error-container transition-all font-label-lg text-label-lg" data-path="admin-login" href="#"><span class="material-symbols-outlined text-xl">logout</span><span>تسجيل الخروج</span></a></div></aside><div class="pr-64"><header class="fixed top-0 right-64 left-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-sm text-on-surface-variant font-label-md text-label-md"><span class="material-symbols-outlined text-primary text-lg">admin_panel_settings</span><span>بوابة المشرف الطبي</span></div><div class="flex items-center gap-space-md"><button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined">notifications</span></button><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XH5cK4PUWN-rMav1FCFVZp2kzPhICfLRI3X1Kvtt8KO3atyLQpiGuDsyUhIYJZP2qXlmeYgo8c4tBG_LhFgv27MBupNMfqhr2j5z56ELJpADcYaEBXQazuYTeoguP3qg1xT-YnXVIp2mB-72-AzqVBk42VrzWdY7Ni38VyyaYoInaXVJI5hOVxjTRfuVNYVybIodoaL_V_0uD4DT-UwOv1LPzVayJe4mLgNwaTKbyzPqy8w7zxSVcS5SM"/></div></header><main class="w-full pt-16 bg-surface px-space-lg py-space-lg"><div class="flex flex-col w-full">
+<!-- Context Bar & Operational Alert -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="inline-flex items-center justify-center w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">نظام العمليات الحية • مباشر</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">إدارة الحجوزات والمواعيد</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">عيادة ماستر هيلث التخصصية — تنظيم مواعيد المرضى، تأكيد الجداول، وإجراءات السكرتارية الطبية</p>
+</div>
+<!-- Quick Manual Action & Export -->
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container transition-all font-label-md text-label-md shadow-sm" id="exportBtn">
+<span class="material-symbols-outlined text-lg text-on-surface-variant">file_download</span>
+<span>تصدير الكشف</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md shadow-sm" id="openNewBookingModal">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+<span>إضافة حجز يدوي جديد</span>
+</button>
+</div>
+</div>
+<!-- Key Metrics / KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-lg">
+<!-- Card 1: Today's Slots -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block mb-space-xs">مواعيد اليوم (الأحد)</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">14</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">موعداً مجدولاً</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center gap-space-md bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface">11 مؤكدة</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-label-sm text-on-surface">3 بانتظار التأكيد</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Weekly Capacity -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block mb-space-xs">إجمالي حجوزات هذا الأسبوع</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">86</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">+12% عن الأسبوع الماضي</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-2xl">date_range</span>
+</div>
+</div>
+<!-- Capacity Micro Progress -->
+<div class="mt-space-md">
+<div class="flex justify-between items-center mb-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span>نسبة إشغال جدول العيادة</span>
+<span class="font-semibold text-on-surface">82%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 82%"></div>
+</div>
+</div>
+</div>
+<!-- Card 3: Attendance & Cancellation Ratio -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block mb-space-xs">نسبة الحضور والإلغاء</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">94.2%</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">معدل التزام ممتاز</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">verified</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant pt-space-xs">
+<span class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>الإلغاءات: 4 هذا الأسبوع</span>
+</span>
+<span class="text-on-surface font-medium">متوسط التأخير: 8 دقائق</span>
+</div>
+</div>
+</div>
+<!-- Interactive Control Panel & Filters -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm mb-space-lg">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search Input -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute right-space-md top-1/2 -translate-y-1/2 text-outline text-xl pointer-events-none">search</span>
+<input class="w-full pr-11 pl-space-md py-space-sm bg-surface rounded-lg text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-inner transition-all" id="patientSearch" placeholder="بحث سريع برقم الحجز، اسم المريض، أو رقم الجوال..." type="text"/>
+</div>
+<!-- Quick Filter Pills -->
+<div class="flex flex-wrap items-center gap-space-xs" id="statusFilterGroup">
+<button class="px-space-md py-space-xs rounded-full bg-primary text-on-primary font-label-md text-label-md transition-colors filter-pill" data-status="all">
+          الكل (14)
+        </button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-colors filter-pill" data-status="pending">
+          بانتظار التأكيد (3)
+        </button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-colors filter-pill" data-status="confirmed">
+          مؤكدة (10)
+        </button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-colors filter-pill" data-status="cancelled">
+          ملغاة (1)
+        </button>
+</div>
+<!-- Date Period Selector -->
+<div class="flex items-center gap-space-xs">
+<select class="bg-surface-container-high text-on-surface px-space-md py-space-sm rounded-lg font-label-md text-label-md focus:outline-none cursor-pointer" id="dateFilter">
+<option value="today">اليوم (الأحد)</option>
+<option value="tomorrow">غداً</option>
+<option selected="" value="week">هذا الأسبوع</option>
+<option value="custom">تاريخ مخصص...</option>
+</select>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface-variant hover:text-on-surface" id="resetFilters" title="إعادة تعيين الفلاتر">
+<span class="material-symbols-outlined text-lg">restart_alt</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bookings Data Table View -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Table Header Info Bar -->
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">event_available</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">قائمة الحجوزات الطبية المباشرة</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm" id="bookingCountIndicator">14 مريض</span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span class="inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> تحديث فوري متزامن
+        </span>
+</div>
+</div>
+<!-- The Tabular List -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-right align-middle" id="bookingsTable">
+<thead>
+<tr class="bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md">
+<th class="px-space-lg py-space-md font-semibold">رقم الحجز</th>
+<th class="px-space-md py-space-md font-semibold">اسم المريض</th>
+<th class="px-space-md py-space-md font-semibold">رقم الجوال</th>
+<th class="px-space-md py-space-md font-semibold">الموعد والتوقيت</th>
+<th class="px-space-md py-space-md font-semibold">نوع الاستشارة</th>
+<th class="px-space-md py-space-md font-semibold text-center">حالة الحجز</th>
+<th class="px-space-lg py-space-md font-semibold text-center">إجراءات سريعة</th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm text-on-surface divide-y-0" id="tableBody">
+<!-- Row 1: Pending -->
+<tr class="hover:bg-surface-container-low/70 transition-colors booking-row" data-status="pending">
+<td class="px-space-lg py-space-md">
+<span class="font-mono font-semibold text-primary">#MH-9402</span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">
+                  سم
+                </div>
+<div>
+<div class="font-semibold text-on-surface">سارة محمد الشهري</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">ملف رقم: 10482</div>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md font-mono dir-ltr text-right">055-321-9874</td>
+<td class="px-space-md py-space-md">
+<div class="font-medium text-on-surface">اليوم، 04:30 م</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">عيادة أمراض الباطنة</span>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+                كشف أول
+              </span>
+</td>
+<td class="px-space-md py-space-md text-center">
+<span class="status-badge inline-flex items-center gap-1 px-space-md py-1 rounded-full text-label-sm font-semibold" style="background-color: #FEFCBF; color: #975A16;">
+<span class="w-1.5 h-1.5 rounded-full" style="background-color: #975A16;"></span>
+                بانتظار التأكيد
+              </span>
+</td>
+<td class="px-space-lg py-space-md text-center">
+<div class="inline-flex items-center gap-space-xs">
+<button class="p-1.5 rounded-lg text-secondary hover:bg-secondary-container transition-colors" onclick="updateRowStatus(this, 'confirmed')" title="تأكيد الموعد فوراً">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+</button>
+<a class="p-1.5 rounded-lg text-primary hover:bg-primary-fixed transition-colors" href="tel:0553219874" title="اتصال هاتفي">
+<span class="material-symbols-outlined text-xl">call</span>
+</a>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" title="تعديل الموعد">
+<span class="material-symbols-outlined text-xl">edit_calendar</span>
+</button>
+<button class="p-1.5 rounded-lg text-error hover:bg-error-container transition-colors" onclick="updateRowStatus(this, 'cancelled')" title="إلغاء الموعد">
+<span class="material-symbols-outlined text-xl">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Confirmed -->
+<tr class="hover:bg-surface-container-low/70 transition-colors booking-row" data-status="confirmed">
+<td class="px-space-lg py-space-md">
+<span class="font-mono font-semibold text-primary">#MH-9401</span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold text-xs">
+                  عق
+                </div>
+<div>
+<div class="font-semibold text-on-surface">عبدالله خالد القحطاني</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">ملف رقم: 08912</div>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md font-mono dir-ltr text-right">050-482-1190</td>
+<td class="px-space-md py-space-md">
+<div class="font-medium text-on-surface">اليوم، 05:00 م</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">عيادة القلب والأوعية</span>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+                متابعة دورية
+              </span>
+</td>
+<td class="px-space-md py-space-md text-center">
+<span class="status-badge inline-flex items-center gap-1 px-space-md py-1 rounded-full text-label-sm font-semibold" style="background-color: #C6F6D5; color: #22543D;">
+<span class="w-1.5 h-1.5 rounded-full" style="background-color: #22543D;"></span>
+                مؤكد
+              </span>
+</td>
+<td class="px-space-lg py-space-md text-center">
+<div class="inline-flex items-center gap-space-xs">
+<button class="p-1.5 rounded-lg text-outline-variant cursor-not-allowed" title="إعادة تأكيد">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+</button>
+<a class="p-1.5 rounded-lg text-primary hover:bg-primary-fixed transition-colors" href="tel:0504821190" title="اتصال بالمريض">
+<span class="material-symbols-outlined text-xl">call</span>
+</a>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" title="تعديل الموعد">
+<span class="material-symbols-outlined text-xl">edit_calendar</span>
+</button>
+<button class="p-1.5 rounded-lg text-error hover:bg-error-container transition-colors" onclick="updateRowStatus(this, 'cancelled')" title="إلغاء الموعد">
+<span class="material-symbols-outlined text-xl">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Confirmed -->
+<tr class="hover:bg-surface-container-low/70 transition-colors booking-row" data-status="confirmed">
+<td class="px-space-lg py-space-md">
+<span class="font-mono font-semibold text-primary">#MH-9399</span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">
+                  مر
+                </div>
+<div>
+<div class="font-semibold text-on-surface">مروة يوسف الرشيد</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">ملف رقم: 12093</div>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md font-mono dir-ltr text-right">056-883-2041</td>
+<td class="px-space-md py-space-md">
+<div class="font-medium text-on-surface">اليوم، 05:45 م</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">عيادة طب الأسرة</span>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+                فحص دوري شامل
+              </span>
+</td>
+<td class="px-space-md py-space-md text-center">
+<span class="status-badge inline-flex items-center gap-1 px-space-md py-1 rounded-full text-label-sm font-semibold" style="background-color: #C6F6D5; color: #22543D;">
+<span class="w-1.5 h-1.5 rounded-full" style="background-color: #22543D;"></span>
+                مؤكد
+              </span>
+</td>
+<td class="px-space-lg py-space-md text-center">
+<div class="inline-flex items-center gap-space-xs">
+<button class="p-1.5 rounded-lg text-outline-variant cursor-not-allowed" title="تم التأكيد بالفعل">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+</button>
+<a class="p-1.5 rounded-lg text-primary hover:bg-primary-fixed transition-colors" href="tel:0568832041" title="اتصال هاتفي">
+<span class="material-symbols-outlined text-xl">call</span>
+</a>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" title="تعديل الموعد">
+<span class="material-symbols-outlined text-xl">edit_calendar</span>
+</button>
+<button class="p-1.5 rounded-lg text-error hover:bg-error-container transition-colors" onclick="updateRowStatus(this, 'cancelled')" title="إلغاء الموعد">
+<span class="material-symbols-outlined text-xl">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Pending -->
+<tr class="hover:bg-surface-container-low/70 transition-colors booking-row" data-status="pending">
+<td class="px-space-lg py-space-md">
+<span class="font-mono font-semibold text-primary">#MH-9398</span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold text-xs">
+                  فد
+                </div>
+<div>
+<div class="font-semibold text-on-surface">فهد إبراهيم الدوسري</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">ملف رقم: 04419</div>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md font-mono dir-ltr text-right">054-990-1288</td>
+<td class="px-space-md py-space-md">
+<div class="font-medium text-on-surface">اليوم، 06:15 م</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">العيادة العامة والاستشارات</span>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+                كشف أول
+              </span>
+</td>
+<td class="px-space-md py-space-md text-center">
+<span class="status-badge inline-flex items-center gap-1 px-space-md py-1 rounded-full text-label-sm font-semibold" style="background-color: #FEFCBF; color: #975A16;">
+<span class="w-1.5 h-1.5 rounded-full" style="background-color: #975A16;"></span>
+                بانتظار التأكيد
+              </span>
+</td>
+<td class="px-space-lg py-space-md text-center">
+<div class="inline-flex items-center gap-space-xs">
+<button class="p-1.5 rounded-lg text-secondary hover:bg-secondary-container transition-colors" onclick="updateRowStatus(this, 'confirmed')" title="تأكيد الحجز">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+</button>
+<a class="p-1.5 rounded-lg text-primary hover:bg-primary-fixed transition-colors" href="tel:0549901288" title="اتصال بالمريض">
+<span class="material-symbols-outlined text-xl">call</span>
+</a>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" title="تعديل الموعد">
+<span class="material-symbols-outlined text-xl">edit_calendar</span>
+</button>
+<button class="p-1.5 rounded-lg text-error hover:bg-error-container transition-colors" onclick="updateRowStatus(this, 'cancelled')" title="إلغاء الموعد">
+<span class="material-symbols-outlined text-xl">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Cancelled -->
+<tr class="hover:bg-surface-container-low/70 transition-colors booking-row opacity-80" data-status="cancelled">
+<td class="px-space-lg py-space-md">
+<span class="font-mono font-semibold text-outline line-through">#MH-9395</span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-error font-bold text-xs">
+                  نع
+                </div>
+<div>
+<div class="font-semibold text-on-surface line-through">نورة عبدالعزيز العتيبي</div>
+<div class="font-label-sm text-label-sm text-error">إلغاء من قبل المريض</div>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md font-mono dir-ltr text-right">053-112-4450</td>
+<td class="px-space-md py-space-md">
+<div class="font-medium text-on-surface line-through">اليوم، 07:00 م</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">عيادة التغذية العلاجية</span>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+                متابعة
+              </span>
+</td>
+<td class="px-space-md py-space-md text-center">
+<span class="status-badge inline-flex items-center gap-1 px-space-md py-1 rounded-full text-label-sm font-semibold" style="background-color: #FED7D7; color: #742A2A;">
+<span class="w-1.5 h-1.5 rounded-full" style="background-color: #742A2A;"></span>
+                ملغي
+              </span>
+</td>
+<td class="px-space-lg py-space-md text-center">
+<div class="inline-flex items-center gap-space-xs">
+<button class="p-1.5 rounded-lg text-primary hover:bg-primary-fixed transition-colors" onclick="updateRowStatus(this, 'confirmed')" title="إعادة تنشيط الحجز">
+<span class="material-symbols-outlined text-xl">restore</span>
+</button>
+<a class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="tel:0531124450" title="اتصال بالمريض">
+<span class="material-symbols-outlined text-xl">call</span>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 6: Confirmed -->
+<tr class="hover:bg-surface-container-low/70 transition-colors booking-row" data-status="confirmed">
+<td class="px-space-lg py-space-md">
+<span class="font-mono font-semibold text-primary">#MH-9390</span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold text-xs">
+                  تم
+                </div>
+<div>
+<div class="font-semibold text-on-surface">طارق منصور العمري</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">ملف رقم: 05210</div>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md font-mono dir-ltr text-right">055-667-3312</td>
+<td class="px-space-md py-space-md">
+<div class="font-medium text-on-surface">اليوم، 07:30 م</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">عيادة أمراض الباطنة</span>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+                متابعة تحاليل
+              </span>
+</td>
+<td class="px-space-md py-space-md text-center">
+<span class="status-badge inline-flex items-center gap-1 px-space-md py-1 rounded-full text-label-sm font-semibold" style="background-color: #C6F6D5; color: #22543D;">
+<span class="w-1.5 h-1.5 rounded-full" style="background-color: #22543D;"></span>
+                مؤكد
+              </span>
+</td>
+<td class="px-space-lg py-space-md text-center">
+<div class="inline-flex items-center gap-space-xs">
+<button class="p-1.5 rounded-lg text-outline-variant cursor-not-allowed" title="تم التأكيد">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+</button>
+<a class="p-1.5 rounded-lg text-primary hover:bg-primary-fixed transition-colors" href="tel:0556673312" title="اتصال بالمريض">
+<span class="material-symbols-outlined text-xl">call</span>
+</a>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" title="تعديل الموعد">
+<span class="material-symbols-outlined text-xl">edit_calendar</span>
+</button>
+<button class="p-1.5 rounded-lg text-error hover:bg-error-container transition-colors" onclick="updateRowStatus(this, 'cancelled')" title="إلغاء الموعد">
+<span class="material-symbols-outlined text-xl">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 7: Pending -->
+<tr class="hover:bg-surface-container-low/70 transition-colors booking-row" data-status="pending">
+<td class="px-space-lg py-space-md">
+<span class="font-mono font-semibold text-primary">#MH-9388</span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">
+                  هـ
+                </div>
+<div>
+<div class="font-semibold text-on-surface">هديل سليمان الشمري</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">ملف رقم: 15302</div>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md font-mono dir-ltr text-right">059-441-8975</td>
+<td class="px-space-md py-space-md">
+<div class="font-medium text-on-surface">اليوم، 08:15 م</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">عيادة القلب والأوعية</span>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+                كشف أول
+              </span>
+</td>
+<td class="px-space-md py-space-md text-center">
+<span class="status-badge inline-flex items-center gap-1 px-space-md py-1 rounded-full text-label-sm font-semibold" style="background-color: #FEFCBF; color: #975A16;">
+<span class="w-1.5 h-1.5 rounded-full" style="background-color: #975A16;"></span>
+                بانتظار التأكيد
+              </span>
+</td>
+<td class="px-space-lg py-space-md text-center">
+<div class="inline-flex items-center gap-space-xs">
+<button class="p-1.5 rounded-lg text-secondary hover:bg-secondary-container transition-colors" onclick="updateRowStatus(this, 'confirmed')" title="تأكيد الحجز فوراً">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+</button>
+<a class="p-1.5 rounded-lg text-primary hover:bg-primary-fixed transition-colors" href="tel:0594418975" title="اتصال بالمريضة">
+<span class="material-symbols-outlined text-xl">call</span>
+</a>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" title="تعديل الموعد">
+<span class="material-symbols-outlined text-xl">edit_calendar</span>
+</button>
+<button class="p-1.5 rounded-lg text-error hover:bg-error-container transition-colors" onclick="updateRowStatus(this, 'cancelled')" title="إلغاء الموعد">
+<span class="material-symbols-outlined text-xl">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer & Pagination Controller -->
+<div class="px-space-lg py-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<span>عرض</span>
+<select class="bg-surface-container-lowest text-on-surface px-space-sm py-1 rounded text-label-sm font-label-sm focus:outline-none">
+<option>10 مواعيد</option>
+<option>25 موعداً</option>
+<option>50 موعداً</option>
+</select>
+<span>من أصل 14 حجز اليوم</span>
+</div>
+<!-- Pagination Buttons -->
+<div class="flex items-center gap-space-xs">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-surface-container-high text-on-surface-variant hover:bg-surface-container hover:text-on-surface disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-primary text-on-primary font-label-sm text-label-sm font-bold">1</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm">2</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-surface-container-high text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Modal: Quick Manual Booking Injection (Off-canvas / Lightbox) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center p-space-md" id="newBookingModal">
+<div class="bg-surface-container-lowest w-full max-w-xl rounded-xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">person_add</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">إضافة حجز يدوي مباشر</h2>
+</div>
+<button class="text-on-surface-variant hover:text-error transition-colors" id="closeModalBtn">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<form class="p-space-lg flex flex-col gap-space-md" id="bookingForm" onsubmit="event.preventDefault(); submitManualBooking();">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">اسم المريض ثلاثي *</label>
+<input class="px-space-md py-space-sm bg-surface rounded-lg text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-inner" id="modalPatientName" placeholder="مثال: سلمان بن حمد آل ثاني" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">رقم الجوال النشط *</label>
+<input class="px-space-md py-space-sm bg-surface rounded-lg text-on-surface font-body-sm text-body-sm dir-ltr text-right focus:outline-none focus:bg-surface-container-lowest shadow-inner" id="modalPatientPhone" placeholder="05XXXXXXXX" required="" type="tel"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">العيادة والتخصص *</label>
+<select class="px-space-md py-space-sm bg-surface rounded-lg text-on-surface font-body-sm text-body-sm focus:outline-none" id="modalClinic">
+<option>عيادة أمراض الباطنة</option>
+<option>عيادة القلب والأوعية</option>
+<option>عيادة طب الأسرة</option>
+<option>عيادة التغذية العلاجية</option>
+</select>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">نوع الزيارة</label>
+<select class="px-space-md py-space-sm bg-surface rounded-lg text-on-surface font-body-sm text-body-sm focus:outline-none" id="modalVisitType">
+<option>كشف أول</option>
+<option>متابعة علاجية</option>
+<option>فحص دوري شامل</option>
+<option>استشارة سريعة</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">وقت الموعد المقترح</label>
+<input class="px-space-md py-space-sm bg-surface rounded-lg text-on-surface font-body-sm text-body-sm focus:outline-none" id="modalTime" type="text" value="اليوم، 09:00 م"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">حالة التأكيد المبدئية</label>
+<select class="px-space-md py-space-sm bg-surface rounded-lg text-on-surface font-body-sm text-body-sm focus:outline-none" id="modalStatus">
+<option value="confirmed">مؤكد فوراً</option>
+<option value="pending">بانتظار تأكيد المريض</option>
+</select>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm mt-space-md pt-space-md">
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-surface-container" id="cancelModalBtn" type="button">إلغاء</button>
+<button class="px-space-lg py-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container shadow-sm flex items-center gap-space-xs" type="submit">
+<span class="material-symbols-outlined text-lg">check</span>
+<span>تأكيد وحفظ الموعد</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Toast Notification Overlay -->
+<div class="fixed bottom-6 left-6 bg-inverse-surface text-inverse-on-surface px-space-lg py-space-md rounded-xl shadow-xl flex items-center gap-space-sm transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none z-50" id="toastNotification">
+<span class="material-symbols-outlined text-secondary-fixed text-xl" id="toastIcon">check_circle</span>
+<span class="font-body-sm text-body-sm font-medium" id="toastMessage">تم تنفيذ الإجراء بنجاح</span>
+</div>
+</div>
+<script>
+  // Search and Filtering Logic
+  const searchInput = document.getElementById('patientSearch');
+  const rows = document.querySelectorAll('.booking-row');
+  const filterPills = document.querySelectorAll('.filter-pill');
+  let currentFilter = 'all';
+
+  function filterTable() {
+    const query = (searchInput.value || '').trim().toLowerCase();
+    let visibleCount = 0;
+
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      const status = row.getAttribute('data-status');
+
+      const matchesStatus = (currentFilter === 'all') || (status === currentFilter);
+      const matchesSearch = text.includes(query);
+
+      if (matchesStatus && matchesSearch) {
+        row.style.display = '';
+        visibleCount++;
+      } else {
+        row.style.display = 'none';
+      }
+    });
+
+    const counter = document.getElementById('bookingCountIndicator');
+    if (counter) {
+      counter.innerText = `${visibleCount} مواعيد`;
+    }
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', filterTable);
+  }
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => {
+        p.classList.remove('bg-primary', 'text-on-primary');
+        p.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+      });
+      pill.classList.add('bg-primary', 'text-on-primary');
+      pill.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+
+      currentFilter = pill.getAttribute('data-status');
+      filterTable();
+    });
+  });
+
+  const resetBtn = document.getElementById('resetFilters');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      currentFilter = 'all';
+      filterPills.forEach(p => {
+        if (p.getAttribute('data-status') === 'all') {
+          p.classList.add('bg-primary', 'text-on-primary');
+          p.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+        } else {
+          p.classList.remove('bg-primary', 'text-on-primary');
+          p.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+        }
+      });
+      filterTable();
+      showToast('تمت استعادة العرض الافتراضي للمواعيد');
+    });
+  }
+
+  // Row Action updates (Confirm / Cancel in 1-click)
+  window.updateRowStatus = function(btnElement, targetStatus) {
+    const row = btnElement.closest('.booking-row');
+    if (!row) return;
+
+    row.setAttribute('data-status', targetStatus);
+    const badge = row.querySelector('.status-badge');
+
+    if (targetStatus === 'confirmed') {
+      badge.style.backgroundColor = '#C6F6D5';
+      badge.style.color = '#22543D';
+      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full" style="background-color: #22543D;"></span> مؤكد';
+      showToast('تم تأكيد الموعد بنجاح وإرسال إشعار SMS للمريض');
+    } else if (targetStatus === 'cancelled') {
+      badge.style.backgroundColor = '#FED7D7';
+      badge.style.color = '#742A2A';
+      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full" style="background-color: #742A2A;"></span> ملغي';
+      showToast('تم إلغاء الموعد وإفساح الخانة في جدول الطبيب');
+    }
+
+    filterTable();
+  };
+
+  // Toast Functionality
+  function showToast(message) {
+    const toast = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMessage');
+    if (!toast || !toastMsg) return;
+
+    toastMsg.innerText = message;
+    toast.classList.remove('translate-y-20', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    setTimeout(() => {
+      toast.classList.add('translate-y-20', 'opacity-0');
+      toast.classList.remove('translate-y-0', 'opacity-100');
+    }, 3200);
+  }
+
+  // Modal Control
+  const modal = document.getElementById('newBookingModal');
+  const openModalBtn = document.getElementById('openNewBookingModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const cancelModalBtn = document.getElementById('cancelModalBtn');
+
+  function toggleModal(show) {
+    if (!modal) return;
+    if (show) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    } else {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  }
+
+  if (openModalBtn) openModalBtn.addEventListener('click', () => toggleModal(true));
+  if (closeModalBtn) closeModalBtn.addEventListener('click', () => toggleModal(false));
+  if (cancelModalBtn) cancelModalBtn.addEventListener('click', () => toggleModal(false));
+
+  window.submitManualBooking = function() {
+    const name = document.getElementById('modalPatientName').value;
+    const phone = document.getElementById('modalPatientPhone').value;
+    const clinic = document.getElementById('modalClinic').value;
+    const visitType = document.getElementById('modalVisitType').value;
+    const status = document.getElementById('modalStatus').value;
+    const time = document.getElementById('modalTime').value;
+
+    const tbody = document.getElementById('tableBody');
+    const randomId = '#MH-' + Math.floor(1000 + Math.random() * 9000);
+
+    const isConfirmed = status === 'confirmed';
+    const bgBadge = isConfirmed ? '#C6F6D5' : '#FEFCBF';
+    const textBadge = isConfirmed ? '#22543D' : '#975A16';
+    const labelBadge = isConfirmed ? 'مؤكد' : 'بانتظار التأكيد';
+
+    const tr = document.createElement('tr');
+    tr.className = 'hover:bg-surface-container-low/70 transition-colors booking-row';
+    tr.setAttribute('data-status', status);
+    tr.innerHTML = `
+      <td class="px-space-lg py-space-md">
+        <span class="font-mono font-semibold text-primary">${randomId}</span>
+      </td>
+      <td class="px-space-md py-space-md">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">
+            ${name.slice(0, 2)}
+          </div>
+          <div>
+            <div class="font-semibold text-on-surface">${name}</div>
+            <div class="font-label-sm text-label-sm text-on-surface-variant">حجز يدوي مباشر</div>
+          </div>
+        </div>
+      </td>
+      <td class="px-space-md py-space-md font-mono dir-ltr text-right">${phone}</td>
+      <td class="px-space-md py-space-md">
+        <div class="font-medium text-on-surface">${time}</div>
+        <span class="text-label-sm font-label-sm text-on-surface-variant">${clinic}</span>
+      </td>
+      <td class="px-space-md py-space-md">
+        <span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+          ${visitType}
+        </span>
+      </td>
+      <td class="px-space-md py-space-md text-center">
+        <span class="status-badge inline-flex items-center gap-1 px-space-md py-1 rounded-full text-label-sm font-semibold" style="background-color: ${bgBadge}; color: ${textBadge};">
+          <span class="w-1.5 h-1.5 rounded-full" style="background-color: ${textBadge};"></span>
+          ${labelBadge}
+        </span>
+      </td>
+      <td class="px-space-lg py-space-md text-center">
+        <div class="inline-flex items-center gap-space-xs">
+          <button title="تأكيد" onclick="updateRowStatus(this, 'confirmed')" class="p-1.5 rounded-lg text-secondary hover:bg-secondary-container transition-colors">
+            <span class="material-symbols-outlined text-xl">check_circle</span>
+          </button>
+          <a href="tel:${phone}" title="اتصال" class="p-1.5 rounded-lg text-primary hover:bg-primary-fixed transition-colors">
+            <span class="material-symbols-outlined text-xl">call</span>
+          </a>
+          <button title="تعديل" class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            <span class="material-symbols-outlined text-xl">edit_calendar</span>
+          </button>
+          <button title="إلغاء" onclick="updateRowStatus(this, 'cancelled')" class="p-1.5 rounded-lg text-error hover:bg-error-container transition-colors">
+            <span class="material-symbols-outlined text-xl">cancel</span>
+          </button>
+        </div>
+      </td>
+    `;
+
+    tbody.insertBefore(tr, tbody.firstChild);
+    toggleModal(false);
+    showToast('تمت إضافة الموعد الجديد بنجاح في الجدول الطبي');
+    filterTable();
+  };
+
+  // Export Action Mock
+  const exportBtn = document.getElementById('exportBtn');
+  if (exportBtn) {
+    exportBtn.addEventListener('click', () => {
+      showToast('جاري تصدير كشف الحجوزات بصيغة Excel...');
+    });
+  }
+</script></main></div></body></html>
