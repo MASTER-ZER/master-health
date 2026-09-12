@@ -14,29 +14,29 @@ CREATE TABLE IF NOT EXISTS public.bookings (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
--- 2. Indexes for efficient dashboard filtering and queries
+-- Indexes for efficient dashboard queries
 CREATE INDEX IF NOT EXISTS idx_bookings_created_at ON public.bookings (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_bookings_status ON public.bookings (status);
 CREATE INDEX IF NOT EXISTS idx_bookings_date ON public.bookings (preferred_date);
 
--- 3. Enable Row Level Security (RLS)
+-- Enable RLS for bookings
 ALTER TABLE public.bookings ENABLE ROW LEVEL SECURITY;
 
--- 4. RLS Policy: Anyone (public anon visitors) can submit/insert a booking
+DROP POLICY IF EXISTS "Allow public insert to bookings" ON public.bookings;
 CREATE POLICY "Allow public insert to bookings"
     ON public.bookings
     FOR INSERT
     TO anon, authenticated
     WITH CHECK (true);
 
--- 5. RLS Policy: Only authenticated staff/admin can view bookings
+DROP POLICY IF EXISTS "Allow authenticated staff to view all bookings" ON public.bookings;
 CREATE POLICY "Allow authenticated staff to view all bookings"
     ON public.bookings
     FOR SELECT
     TO authenticated
     USING (true);
 
--- 6. RLS Policy: Only authenticated staff/admin can update booking status
+DROP POLICY IF EXISTS "Allow authenticated staff to update bookings" ON public.bookings;
 CREATE POLICY "Allow authenticated staff to update bookings"
     ON public.bookings
     FOR UPDATE
@@ -45,7 +45,7 @@ CREATE POLICY "Allow authenticated staff to update bookings"
     WITH CHECK (true);
 
 -- ==============================================================================
--- 7. Clinic Settings Table (Dynamic clinic profile managed from Admin Dashboard)
+-- 2. Clinic Settings Table (Dynamic clinic profile managed from Admin Dashboard)
 -- ==============================================================================
 CREATE TABLE IF NOT EXISTS public.clinic_settings (
     id INT PRIMARY KEY DEFAULT 1 CHECK (id = 1),
@@ -69,25 +69,24 @@ VALUES (
     'contact@masterhealth.com',
     'برج النخبة الطبي، طريق الملك فهد، الرياض، المملكة العربية السعودية',
     'السبت - الأربعاء: 04:00 م - 09:00 م | الخميس: 04:00 م - 08:00 م | الجمعة: مغلق',
-    'نؤمن في عيادة ماستر هيلث بأن الشفاء يبدأ من فهم التاريخ الطبي الكامل للمريض دون استعجال. يكرس الفريق الطبي وقتاً وافياً لكل استشارة سريرية، معتمداً على أحدث الفحوصات والتقنيات لتصميم خطط وقائية وعلاجية مخصصة تناسب أسلوب حياتك.'
+    'نؤمن في عيادة ماستر هيلث بأن الشفاء يبدأ من فهم التاريخ الطبي الكامل للمريض دون استعجال.'
 )
 ON CONFLICT (id) DO NOTHING;
 
 -- Enable RLS for clinic_settings
 ALTER TABLE public.clinic_settings ENABLE ROW LEVEL SECURITY;
 
--- Anyone (public visitors) can view clinic settings
+DROP POLICY IF EXISTS "Allow public read clinic_settings" ON public.clinic_settings;
 CREATE POLICY "Allow public read clinic_settings"
     ON public.clinic_settings
     FOR SELECT
     TO anon, authenticated
     USING (true);
 
--- Authenticated admin/service_role can update clinic settings
-CREATE POLICY "Allow staff to update clinic_settings"
+DROP POLICY IF EXISTS "Allow staff update clinic_settings" ON public.clinic_settings;
+CREATE POLICY "Allow staff update clinic_settings"
     ON public.clinic_settings
-    FOR UPDATE
-    TO authenticated
+    FOR ALL
+    TO anon, authenticated
     USING (true)
     WITH CHECK (true);
-
