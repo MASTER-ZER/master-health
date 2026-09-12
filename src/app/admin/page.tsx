@@ -32,8 +32,21 @@ export default function AdminDashboardPage() {
   };
 
   useEffect(() => {
-    fetchBookings();
-  }, []);
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/admin/me');
+        const data = await res.json();
+        if (!data.authenticated) {
+          router.replace('/admin/login');
+          return;
+        }
+        fetchBookings();
+      } catch (err) {
+        router.replace('/admin/login');
+      }
+    };
+    checkAuth();
+  }, [router]);
 
   // Update Status
   const handleUpdateStatus = async (id: string, newStatus: BookingStatus) => {
