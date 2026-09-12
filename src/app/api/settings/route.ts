@@ -3,6 +3,8 @@ import { createClient } from '@supabase/supabase-js';
 import { DEFAULT_CLINIC_SETTINGS } from '@/lib/settings';
 import { ClinicSettings } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey =
   process.env.SUPABASE_SERVICE_ROLE_KEY ||
@@ -113,9 +115,15 @@ export async function PUT(request: NextRequest) {
 
     if (error) {
       console.error('Update clinic settings error:', error);
+      const isMissingTable =
+        error.code === 'PGRST205' ||
+        error.message?.includes('Could not find the table');
       return NextResponse.json(
         {
-          error: `تعذر حفظ الإعدادات في قاعدة بيانات Supabase: ${error.message}`,
+          error: isMissingTable
+            ? 'جدول إعدادات العيادة (clinic_settings) لم يتم تشغيله في Supabase بعد. يرجى تشغيل كود SQL في Supabase SQL Editor لإنشاء الجدول.'
+            : `تعذر حفظ الإعدادات في قاعدة بيانات Supabase: ${error.message}`,
+          details: error.message,
         },
         { status: 500 }
       );
@@ -134,3 +142,9 @@ export async function PUT(request: NextRequest) {
     );
   }
 }
+
+// POST: Also support POST for saving settings
+export async function POST(request: NextRequest) {
+  return PUT(request);
+}
+

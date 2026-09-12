@@ -27,9 +27,16 @@ export function ClinicSettingsProvider({ children }: { children: React.ReactNode
       setLoading(true);
       const res = await fetch('/api/settings', { cache: 'no-store' });
       if (res.ok) {
-        const data = await res.json();
-        if (data.settings) {
-          setSettings((prev) => ({ ...prev, ...data.settings }));
+        const text = await res.text();
+        if (text) {
+          try {
+            const data = JSON.parse(text);
+            if (data.settings) {
+              setSettings((prev) => ({ ...prev, ...data.settings }));
+            }
+          } catch (e) {
+            console.warn('Could not parse settings JSON:', e);
+          }
         }
       }
     } catch (err) {
@@ -46,22 +53,39 @@ export function ClinicSettingsProvider({ children }: { children: React.ReactNode
   const updateSettings = async (newSettings: Partial<ClinicSettings>) => {
     try {
       const res = await fetch('/api/settings', {
-        method: 'PUT',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...settings, ...newSettings }),
       });
 
-      const data = await res.json();
-      if (!res.ok) {
-        return { success: false, error: data.error || 'فشل حفظ الإعدادات.' };
+      let data: any = null;
+      try {
+        const text = await res.text();
+        if (text) {
+          data = JSON.parse(text);
+        }
+      } catch (parseErr) {
+        console.error('Failed to parse settings response:', parseErr);
       }
 
-      if (data.settings) {
+      if (!res.ok) {
+        return {
+          success: false,
+          error:
+            (data && data.error) ||
+            `فشل حفظ الإعدادات في الخادم (رمز الخطأ: ${res.status} ${res.statusText || ''})`,
+        };
+      }
+
+      if (data && data.settings) {
         setSettings(data.settings);
       }
       return { success: true };
     } catch (err: any) {
-      return { success: false, error: err.message || 'حدث خطأ في الاتصال بالسيرفر.' };
+      return {
+        success: false,
+        error: err.message || 'حدث خطأ غير متوقع أثناء الاتصال بالسيرفر.',
+      };
     }
   };
 
